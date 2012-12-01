@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ADB679A0-4036-4B81-957B-D3D9E6BC8766}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dnd.Core</RootNamespace>
+    <AssemblyName>Dnd.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\AbstractAttackAction.cs" />
+    <Compile Include="Actions\ActionResult.cs" />
+    <Compile Include="Actions\FullAttack.cs" />
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Actions\MeleeAttack.cs" />
+    <Compile Include="Arena.cs" />
+    <Compile Include="AttackEventArgs.cs" />
+    <Compile Include="Attacks\Attack.cs" />
+    <Compile Include="Attacks\AttackList.cs" />
+    <Compile Include="Actions\AttackResult.cs" />
+    <Compile Include="Attacks\AvgAttackBonus.cs" />
+    <Compile Include="Attacks\PoorAttackBonus.cs" />
+    <Compile Include="Attacks\GoodAttackBonus.cs" />
+    <Compile Include="Attacks\IAttackBonus.cs" />
+    <Compile Include="Attacks\ReadOnlyAttack.cs" />
+    <Compile Include="CharacterCreator.cs" />
+    <Compile Include="Dice\D12.cs" />
+    <Compile Include="Dice\D10.cs" />
+    <Compile Include="Dice\D20.cs" />
+    <Compile Include="Dice\D8.cs" />
+    <Compile Include="Dice\D4.cs" />
+    <Compile Include="Dice\D6.cs" />
+    <Compile Include="Dice\Dice.cs" />
+    <Compile Include="Dice\IDie.cs" />
+    <Compile Include="Enums\AttackBonusType.cs" />
+    <Compile Include="Enums\AttackResultType.cs" />
+    <Compile Include="Enums\EqSlot.cs" />
+    <Compile Include="Enums\WeaponType.cs" />
+    <Compile Include="Enums\Feature.cs" />
+    <Compile Include="Enums\SaveBonusType.cs" />
+    <Compile Include="Equipment.cs" />
+    <Compile Include="Items\IItem.cs" />
+    <Compile Include="Items\Shields\IShield.cs" />
+    <Compile Include="Items\Shields\TowerShield.cs" />
+    <Compile Include="Items\Weapons\AbstractSingleHandedWeapon.cs" />
+    <Compile Include="Items\Weapons\AbstractTwoHandedWeapon.cs" />
+    <Compile Include="Items\Weapons\GreatSword.cs" />
+    <Compile Include="Items\Weapons\LongSword.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Items\Weapons\IWeapon.cs" />
+    <Compile Include="Modifiers\Classes\AbstractClassModifier.cs" />
+    <Compile Include="Modifiers\Classes\ClericModifier.cs" />
+    <Compile Include="Modifiers\Classes\WizardModifier.cs" />
+    <Compile Include="Modifiers\Classes\SorcerorModifier.cs" />
+    <Compile Include="Modifiers\Classes\RogueModifier.cs" />
+    <Compile Include="Modifiers\Classes\RangerModifier.cs" />
+    <Compile Include="Modifiers\Classes\PaladinModifier.cs" />
+    <Compile Include="Modifiers\Classes\MonkModifier.cs" />
+    <Compile Include="Modifiers\Classes\DruidModifier.cs" />
+    <Compile Include="Modifiers\Races\AbstractRaceModifier.cs" />
+    <Compile Include="Modifiers\Races\HalflingModifier.cs" />
+    <Compile Include="Modifiers\Races\HalfOrcModifier.cs" />
+    <Compile Include="Modifiers\Races\HalfElfModifier.cs" />
+    <Compile Include="Saves\SavesList.cs" />
+    <Compile Include="Saves\ReadOnlySave.cs" />
+    <Compile Include="Attributes\ReadOnlyAttribute.cs" />
+    <Compile Include="Saves\ISaveBonus.cs" />
+    <Compile Include="Saves\GoodSaveBonus.cs" />
+    <Compile Include="Saves\PoorSaveBonus.cs" />
+    <Compile Include="Enums\Class.cs" />
+    <Compile Include="Modifiers\CharacterModifier.cs" />
+    <Compile Include="Modifiers\Classes\BarbarianModifier.cs" />
+    <Compile Include="Modifiers\Classes\BardModifier.cs" />
+    <Compile Include="Modifiers\Classes\FighterModifier.cs" />
+    <Compile Include="Modifiers\Races\GnomeModifier.cs" />
+    <Compile Include="Modifiers\Races\DwarfModifier.cs" />
+    <Compile Include="Modifiers\Races\HumanModifier.cs" />
+    <Compile Include="Modifiers\Races\ElfModifier.cs" />
+    <Compile Include="Modifiers\IModifier.cs" />
+    <Compile Include="Attributes\Attribute.cs" />
+    <Compile Include="Attributes\AttributeList.cs" />
+    <Compile Include="Enums\AttributeType.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="Enums\Size.cs" />
+    <Compile Include="Saves\Save.cs" />
+    <Compile Include="Enums\SaveType.cs" />
+    <Compile Include="Skills\AbilityModifierAttribute.cs" />
+    <Compile Include="Skills\ArmorCheckAttribute.cs" />
+    <Compile Include="Skills\TrainedOnlyAttribute.cs" />
+    <Compile Include="Skills\IEnumerable.cs" />
+    <Compile Include="Skills\ReadOnlySkill.cs" />
+    <Compile Include="Skills\Skill.cs" />
+    <Compile Include="Skills\SkillList.cs" />
+    <Compile Include="Enums\SkillType.cs" />
+    <Compile Include="Enums\Race.cs" />
+    <Compile Include="FeatureList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Modifiers\IModifiable.cs" />
+    <Compile Include="Modifiers\ModifierProvider.cs" />
+    <Compile Include="Skills\SynergyAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
