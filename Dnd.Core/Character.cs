@@ -7,12 +7,11 @@
     using Dnd.Core.Attributes;
     using Dnd.Core.Enums;
     using Dnd.Core.Items;
-    using Dnd.Core.Items.Weapons;
     using Dnd.Core.Modifiers;
     using Dnd.Core.Saves;
     using Dnd.Core.Skills;
 
-    public class Character : IModifiable<Character>
+    public class Character : IModifiable<Character>, ISize
     {
         private IModifier<Character> _baseModifier;
         private IModifier<Character> _raceModifier;
@@ -20,11 +19,12 @@
 
         public string Name { get; set; }
 
+        // Level is derived from the experience ( lvl = 1/2 + 1/2sqrt(1+xp/125) )
         public int Level { get { return (int)Math.Floor((1f + Math.Sqrt(1f + ((double)Experience / 125f))) / 2f); } }
         public int Experience { get; private set; }
 
         public Race Race { get; private set; }
-        public Class Class { get; set; }
+        public Class Class { get; private set; }
         public Size Size { get; set; }
         public int Speed { get; set; }
         public int HpMax { get; set; }
@@ -33,10 +33,11 @@
         private Equipment _equipment;
 
         private AttackList _attacks;
-        public IEnumerable<KeyValuePair<int, int>> GetAttacks(WeaponType weaponType) { return _attacks.GetAllAttacks(weaponType); }
+        public IEnumerable<KeyValuePair<int, int>> GetAttacks(WeaponType weaponType) {
+            return _attacks.GetAllAttacks(weaponType);
+        }
 
-        public int AC { get { return 10 + Dexterity.Modifier + _equipment.GetArmorAc(); } }
-        // Spells
+        // TODO: Spells
 
         private AttributeList _attributes;
         public IEnumerable<ReadOnlyAttribute> Attributes { get { return _attributes.AsEnumerable(); } }
@@ -62,12 +63,18 @@
         public int UnusedFeatures { get; private set; }
         public int UnusedSkillPoints { get; private set; }
 
-        public Character(Class charClass, Race race, ModifierProvider modifierFactory) {
+        public int GetAc(bool flatFooted = false) {
+            var dexModifier = flatFooted ? 0 : Dexterity.Modifier;
+            var armorAc = _equipment.GetArmorAc();
+            return 10 + dexModifier + armorAc;
+        }
+
+        public Character(Class charClass, Race race, ModifierProvider modifierProvider) {
             Class = charClass;
             Race = race;
-            _baseModifier = modifierFactory.GetBaseModifier();
-            _raceModifier = modifierFactory.GetModifier(Race);
-            _classModifier = modifierFactory.GetModifier(Class);
+            _baseModifier = modifierProvider.GetBaseModifier();
+            _raceModifier = modifierProvider.GetRaceModifier(Race);
+            _classModifier = modifierProvider.GetClassModifier(Class);
 
             OnCreation();
         }
@@ -103,6 +110,16 @@
             var levelAfter = Level;
             for (int level = levelBefore; level < levelAfter; level++) {
                 OnLevelGained(level);
+            }
+        }
+
+        /// <summary>
+        /// Adds the number of given levels to the character
+        /// </summary>
+        public void LevelUp(int levels) {
+            while (levels > 1) {
+                SetExperienceToNextLevel();
+                levels--;
             }
         }
 
@@ -164,7 +181,7 @@
             if (Experience == 0) {
                 modifier.ModifyOnCreation(this);
             } else {
-                throw new InvalidOperationException("Only a new character can be modified with ModifyNew");
+                throw new InvalidOperationException("Only a new character can be modified with ModifyOnCreation");
             }
         }
 
@@ -172,7 +189,7 @@
             if (Level > 1) {
                 modifier.ModifyOnLevel(this);
             } else {
-                throw new InvalidOperationException("The character has to be above level 1 to be modified by ModifyLevel");
+                throw new InvalidOperationException("The character has to be above level 1 to be modified by ModifyOnLevel");
             }
         }
 

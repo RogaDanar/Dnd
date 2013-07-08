@@ -6,10 +6,11 @@
     {
         private KeyValuePair<int, int> _attack;
 
-        public MeleeAttack(Character attacker, Character defender, KeyValuePair<int, int> attack) {
+        public MeleeAttack(Character attacker, Character defender, KeyValuePair<int, int> attack, bool flatFooted = false) {
             Attacker = attacker;
             Defender = defender;
             _attack = attack;
+            _flatFooted = flatFooted;
         }
 
         public override IEnumerable<AttackResult> Execute() {

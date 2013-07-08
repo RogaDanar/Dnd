@@ -11,51 +11,52 @@
         private const string USAGE = "Usage [optional]: Dnd.Console <Race> <Class> <Level> [str dex con int wis cha]";
 
         static int Main(string[] args) {
+            // At least Race, level and class need to be provided
             if (args.Length < 3) {
                 Console.WriteLine(USAGE);
+                Console.ReadKey();
                 return 1;
             }
 
+            // If ability scores are provided, they need to be all there
             if (args.Length > 3 && args.Length != 9) {
                 Console.WriteLine(USAGE);
+                Console.ReadKey();
                 return 1;
             }
 
-            Race race = GetRace(args);
-            Class charClass = GetClass(args);
-            int level = GetLevel(args);
-
+            var race = GetRace(args);
+            var charClass = GetClass(args);
+            var level = GetLevel(args);
             var abilityScores = GetAbilityScores(args);
 
+            // If either one of these is 0, it means the creation has failed, quit
             if (race == 0 || charClass == 0 || level == 0) {
                 return 1;
             }
 
-            var character = CharacterCreator.CreateCharacter(race, charClass, level);
-            SetAbilities(character, abilityScores);
+            var character = CharacterCreator.CreateCharacter(race, charClass, level).SetAbilities(abilityScores);
+
+            // write the charactersheet to the console
             ConsoleSheet.Display(character);
+
+            Console.ReadKey();
 
             return 0;
         }
 
-        private static void SetAbilities(Character character, Dictionary<AttributeType, int> abilityScores) {
-            foreach (var ability in abilityScores) {
-                var diff = ability.Value - character.Attributes.Single(x => x.Type == ability.Key).BaseScore;
-                if (diff > 0) {
-                    character.IncreaseAttribute(ability.Key, diff);
-                } else if (diff < 0) {
-                    character.DecreaseAttribute(ability.Key, Math.Abs(diff));
-                }
-            }
-        }
-
+        /// <summary>
+        /// Gets the ability scores from the program argumentlist by index. If the element is missing 
+        /// a default value is used
+        /// </summary>
         private static Dictionary<AttributeType, int> GetAbilityScores(string[] args) {
-            var str = Int32.Parse(args[3]);
-            var dex = Int32.Parse(args[4]);
-            var con = Int32.Parse(args[5]);
-            var intel = Int32.Parse(args[6]);
-            var wis = Int32.Parse(args[7]);
-            var cha = Int32.Parse(args[8]);
+            var defaultScore = "11";
+            var str = Int32.Parse(args.ElementAtOrDefault(3) ?? defaultScore);
+            var dex = Int32.Parse(args.ElementAtOrDefault(4) ?? defaultScore);
+            var con = Int32.Parse(args.ElementAtOrDefault(5) ?? defaultScore);
+            var intel = Int32.Parse(args.ElementAtOrDefault(6) ?? defaultScore);
+            var wis = Int32.Parse(args.ElementAtOrDefault(7) ?? defaultScore);
+            var cha = Int32.Parse(args.ElementAtOrDefault(8) ?? defaultScore);
 
             var abilityScores = new Dictionary<AttributeType, int>() { 
                 {AttributeType.Strength, str},
@@ -68,6 +69,9 @@
             return abilityScores;
         }
 
+        /// <summary>
+        /// Gets the race from the program argument list and writes an error to the console if unsuccesful
+        /// </summary>
         private static Race GetRace(string[] args) {
             Race race;
             if (!Enum.TryParse<Race>(args[0], true, out race)) {
@@ -77,6 +81,9 @@
             return race;
         }
 
+        /// <summary>
+        /// Gets the class from the program argument list and writes an error to the console if unsuccesful
+        /// </summary>
         private static Class GetClass(string[] args) {
             Class charClass;
             if (!Enum.TryParse<Class>(args[1], true, out charClass)) {
@@ -86,6 +93,9 @@
             return charClass;
         }
 
+        /// <summary>
+        /// Gets the level from the program argument list and writes an error to the console if unsuccesful
+        /// </summary>
         private static int GetLevel(string[] args) {
             int level;
             if (!Int32.TryParse(args[2], out level)) {

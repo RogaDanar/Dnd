@@ -5,7 +5,6 @@
     using System.Linq;
     using Dnd.Core.Enums;
     using Dnd.Core.Items;
-    using Dnd.Core.Items.Weapons;
 
     public class Equipment
     {
@@ -30,7 +29,11 @@
         }
 
         public int GetArmorAc() {
-            return Slots.Where(x => x.Value != null).Sum(x => x.Value.AcBonus);
+            return Slots
+                .Where(x => x.Value != null && typeof(IArmor).IsAssignableFrom(x.Value.GetType()))
+                .Select(x => x.Value)
+                .Cast<IArmor>()
+                .Sum(x => x.AcBonus);
         }
     }
 }

@@ -3,13 +3,15 @@
     using System.Collections.Generic;
     using Dnd.Core.Dice;
     using Dnd.Core.Enums;
-    using Dnd.Core.Items.Weapons;
+    using Dnd.Core.Items;
 
     public abstract class AbstractAttackAction : IAction<AttackResult>
     {
-        protected D20 _d20 = Dice.GetDie<D20>();
+        protected D20 _d20 = DiceBag.GetDie<D20>();
 
         protected IWeapon _weapon { get { return Attacker.GetWeapon(); } }
+
+        protected bool _flatFooted { get; set; }
 
         public Character Attacker { get; protected set; }
 
@@ -32,7 +34,7 @@
         }
 
         protected virtual bool IsHit(int attackRoll) {
-            return attackRoll >= Defender.AC;
+            return attackRoll >= Defender.GetAc(_flatFooted);
         }
 
         protected bool IsPossibleCritical(int attackRoll) {
@@ -44,15 +46,17 @@
         }
 
         protected virtual int CriticalDamage() {
-            return _weapon.CritMultiplier * GetDamage();
+            return GetDamage(_weapon.CritMultiplier);
         }
 
-        protected virtual int GetDamage() {
+        protected virtual int GetDamage(int multiplier = 1) {
             var damage = 0;
-            foreach (var damageDie in _weapon.DamageDice) {
-                damage += damageDie.Roll();
+            for (int i = 0; i < multiplier; i++) {
+                foreach (var damageDie in _weapon.DamageDice) {
+                    damage += damageDie.Roll();
+                }
             }
-            damage += GetDamageBonus();
+            damage += multiplier * GetDamageBonus();
             return damage;
         }
 

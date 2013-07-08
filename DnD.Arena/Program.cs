@@ -3,6 +3,7 @@
     using System;
     using Dnd.Core;
     using Dnd.Core.Enums;
+    using Dnd.Core.Items.Armor;
     using Dnd.Core.Items.Shields;
     using Dnd.Core.Items.Weapons;
 
@@ -14,24 +15,26 @@
         static void Main(string[] args) {
             _player1 = CharacterCreator.CreateCharacter(Race.Human, Class.Fighter, 8);
             _player1.Name = "Roga";
-            _player1.IncreaseAttribute(AttributeType.Strength, 0);
+            _player1.IncreaseAttribute(AttributeType.Strength, 4);
             _player1.IncreaseAttribute(AttributeType.Dexterity, 4);
             _player2 = CharacterCreator.CreateCharacter(Race.Human, Class.Fighter, 8);
             _player2.Name = "Armus";
-            _player2.IncreaseAttribute(AttributeType.Strength, 0);
+            _player2.IncreaseAttribute(AttributeType.Strength, 4);
             _player2.IncreaseAttribute(AttributeType.Dexterity, 4);
 
             var greatsword = new GreatSword(Size.Medium);
             var longsword = new LongSword(Size.Medium);
             _player1.EquipItem(greatsword);
+            _player1.EquipItem(new BreastPlate(Size.Medium));
             _player2.EquipItem(longsword);
-            _player2.EquipItem(new TowerShield());
+            _player2.EquipItem(new TowerShield(Size.Medium));
 
-            var arena = new Dnd.Core.Arena(_player1, _player2);
+            var arena = new Arena(_player1, _player2);
             arena.AttackMade += new EventHandler<AttackEventArgs>(arena_AttackMade);
             arena.Attacked += new EventHandler<AttackEventArgs>(arena_Attacked);
             arena.FightDone += new EventHandler(arena_FightDone);
             arena.StartFight();
+            Console.ReadKey();
         }
 
         static void arena_FightDone(object sender, EventArgs e) {

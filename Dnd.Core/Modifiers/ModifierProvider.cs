@@ -7,11 +7,17 @@
 
     public class ModifierProvider
     {
+        /// <summary>
+        /// Returns the base character modifier, which adds the base features and attributepoints for any character
+        /// </summary>
         public IModifier<Character> GetBaseModifier() {
             return new CharacterModifier();
         }
 
-        public IModifier<Character> GetModifier(Race race) {
+        /// <summary>
+        /// returns the Race modifier, which adjust race specific penalties and bonuses on a character
+        /// </summary>
+        public IModifier<Character> GetRaceModifier(Race race) {
             switch (race) {
                 case Race.Elf:
                     return new ElfModifier();
@@ -32,7 +38,10 @@
             }
         }
 
-        public IModifier<Character> GetModifier(Class charClass) {
+        /// <summary>
+        /// returns the Class modifier, which adjust class specific penalties and bonuses on a character
+        /// </summary>
+        public IModifier<Character> GetClassModifier(Class charClass) {
             switch (charClass) {
                 case Class.Barbarian:
                     return new BarbarianModifier();

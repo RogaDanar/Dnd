@@ -4,6 +4,9 @@
     using Dnd.Core;
     using Dnd.Core.Enums;
 
+    /// <summary>
+    /// Displays a character to the console
+    /// </summary>
     public class ConsoleSheet
     {
         private const ConsoleColor HEADER_COLOR = ConsoleColor.Yellow;
@@ -21,7 +24,7 @@
 
             DisplayAttributes(character);
             DisplaySaves(character);
-            DisplayAttacks(character);
+            DisplayOneHandedAttacks(character);
             DisplayFeatures(character);
             DisplaySkills(character);
         }
@@ -45,7 +48,7 @@
             }
         }
 
-        private static void DisplayAttacks(Character character) {
+        private static void DisplayOneHandedAttacks(Character character) {
             PrintHeader("Attacks");
             foreach (var attack in character.GetAttacks(WeaponType.OneHanded)) {
                 Console.WriteLine(String.Format("{0}: +{1}", attack.Key, attack.Value));
@@ -66,15 +69,15 @@
             }
         }
 
-        private static void PrintHeader(string header) {
+        private static void PrintHeader(string headerTitle) {
             Console.ForegroundColor = HEADER_COLOR;
-            Console.WriteLine(String.Format("****  {0}", header));
+            Console.WriteLine(String.Format("****  {0}", headerTitle));
             Console.ResetColor();
         }
 
-        private static void PrintHeader(string header, int unused) {
+        private static void PrintHeader(string headerTitle, int unusedSkillPoints) {
             Console.ForegroundColor = HEADER_COLOR;
-            Console.WriteLine(String.Format("****  {0}    *** Unused: {1}", header, unused));
+            Console.WriteLine(String.Format("****  {0}    *** Unused: {1}", headerTitle, unusedSkillPoints));
             Console.ResetColor();
         }
     }

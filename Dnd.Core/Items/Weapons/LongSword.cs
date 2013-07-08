@@ -7,19 +7,17 @@
 
     public class LongSword : AbstractSingleHandedWeapon
     {
-        public override WeaponType Type { get { return WeaponType.OneHanded; } }
-
         public override IEnumerable<IDie> DamageDice {
             get {
                 switch (Size) {
                     case Size.Tiny:
-                        return new List<IDie> { Dice.GetDie<D4>() };
+                        return new List<IDie> { DiceBag.GetDie<D4>() };
                     case Size.Small:
-                        return new List<IDie> { Dice.GetDie<D6>() };
+                        return new List<IDie> { DiceBag.GetDie<D6>() };
                     case Size.Medium:
-                        return new List<IDie> { Dice.GetDie<D8>() };
+                        return new List<IDie> { DiceBag.GetDie<D8>() };
                     case Size.Large:
-                        return new List<D6> { Dice.GetDie<D6>(), Dice.GetDie<D6>() };
+                        return new List<D6> { DiceBag.GetDie<D6>(), DiceBag.GetDie<D6>() };
                     case Size.Fine:
                     case Size.Diminutive:
                     case Size.Huge:

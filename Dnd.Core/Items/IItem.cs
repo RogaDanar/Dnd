@@ -6,7 +6,5 @@
     public interface IItem
     {
         IEnumerable<EqSlot> Slots { get; }
-
-        int AcBonus { get; }
     }
 }

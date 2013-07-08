@@ -4,9 +4,10 @@
 
     class FullAttack : AbstractAttackAction
     {
-        public FullAttack(Character attacker, Character defender) {
+        public FullAttack(Character attacker, Character defender, bool flatFooted = false) {
             Attacker = attacker;
             Defender = defender;
+            _flatFooted = flatFooted;
         }
 
         public override IEnumerable<AttackResult> Execute() {
