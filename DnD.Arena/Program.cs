@@ -47,13 +47,13 @@
             Console.ReadKey();
 
             var arena = new Arena(_player1, _player2);
-            arena.AttackMade += new EventHandler<AttackEventArgs>(arena_AttackMade);
-            arena.Attacked += new EventHandler<AttackEventArgs>(arena_Attacked);
-            arena.FightDone += new EventHandler(arena_FightDone);
+            arena.AttackMade += ArenaAttackMade;
+            arena.Attacked += ArenaAttacked;
+            arena.FightDone += ArenaFightDone;
             arena.StartFight();
         }
 
-        static void arena_FightDone(object sender, EventArgs e) {
+        static void ArenaFightDone(object sender, EventArgs e) {
             Console.ForegroundColor = ConsoleColor.Magenta;
             if (_player1.HpCurrent <= 0) {
                 Console.WriteLine("You died.");
@@ -62,12 +62,12 @@
             }
             Console.ResetColor();
 
-            Console.WriteLine(String.Format("{0} hp: {1}", _player1.Name, _player1.HpCurrent));
-            Console.WriteLine(String.Format("{0} hp: {1}", _player2.Name, _player2.HpCurrent));
+            Console.WriteLine("{0} hp: {1}", _player1.Name, _player1.HpCurrent);
+            Console.WriteLine("{0} hp: {1}", _player2.Name, _player2.HpCurrent);
         }
 
-        static void arena_AttackMade(object sender, AttackEventArgs e) {
-            ConsoleColor color = ConsoleColor.White;
+        static void ArenaAttackMade(object sender, AttackEventArgs e) {
+            var color = ConsoleColor.White;
             string result = string.Empty;
             switch (e.AttackResult) {
                 case AttackResultType.Hit:
@@ -86,12 +86,12 @@
                     break;
             }
             Console.ForegroundColor = color;
-            Console.WriteLine(String.Format("You {1} for {2} damage", e.PlayerName, result, e.Damage));
+            Console.WriteLine("You {0} for {1} damage", result, e.Damage);
             Console.ResetColor();
         }
 
-        static void arena_Attacked(object sender, AttackEventArgs e) {
-            ConsoleColor color = ConsoleColor.White;
+        static void ArenaAttacked(object sender, AttackEventArgs e) {
+            var color = ConsoleColor.White;
             string result = string.Empty;
             switch (e.AttackResult) {
                 case AttackResultType.Hit:
@@ -110,7 +110,7 @@
                     break;
             }
             Console.ForegroundColor = color;
-            Console.WriteLine(String.Format("{0} {1} you for {2} damage", e.PlayerName, result, e.Damage));
+            Console.WriteLine("{0} {1} you for {2} damage", e.PlayerName, result, e.Damage);
             Console.ResetColor();
         }
     }
