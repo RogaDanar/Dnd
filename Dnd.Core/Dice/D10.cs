@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class D10 : IDie
+    public class D10 : IDie
     {
         public Random Random { get; set; }
 

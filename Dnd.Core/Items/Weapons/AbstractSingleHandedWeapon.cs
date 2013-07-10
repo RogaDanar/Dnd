@@ -1,7 +1,7 @@
 ﻿namespace Dnd.Core.Items.Weapons
 {
     using System.Collections.Generic;
-    using Dnd.Core.Enums;
+    using Dnd.Core.Character.Attacks;
 
     public abstract class AbstractSingleHandedWeapon : AbstractWeapon
     {

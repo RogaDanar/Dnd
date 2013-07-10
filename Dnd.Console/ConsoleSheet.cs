@@ -1,8 +1,9 @@
 ﻿namespace Dnd.CharGenerator
 {
     using System;
-    using Dnd.Core;
-    using Dnd.Core.Enums;
+    using System.Linq;
+    using Dnd.Core.Character;
+    using Dnd.Core.Character.Attacks;
 
     /// <summary>
     /// Displays a character to the console
@@ -13,23 +14,28 @@
 
         private ConsoleSheet() { }
 
-        public static void Display(Character character) {
-            Console.WriteLine("Level: " + character.Level);
-            Console.WriteLine("XP:    " + character.Experience);
-            Console.WriteLine("Race:  " + character.Race);
-            Console.WriteLine("Class: " + character.Class);
-            Console.WriteLine("HP:    " + character.HpMax);
-            Console.WriteLine("Size:  " + character.Size);
-            Console.WriteLine("Speed: " + character.Speed + "ft");
-
+        public static void Display(DefaultCharacter character) {
+            DisplayStatus(character);
             DisplayAttributes(character);
             DisplaySaves(character);
             DisplayOneHandedAttacks(character);
+            DisplayEquipment(character);
             DisplayFeatures(character);
             DisplaySkills(character);
         }
 
-        private static void DisplaySkills(Character character) {
+        private static void DisplayStatus(DefaultCharacter character) {
+            PrintHeader("Character Sheet");
+            Console.WriteLine("Level: " + character.Level);
+            Console.WriteLine("XP:    " + character.Experience);
+            Console.WriteLine("Race:  " + character.Race);
+            Console.WriteLine("Class: " + string.Join(", ", character.Classes.Keys.ToArray()));
+            Console.WriteLine("HP:    " + character.HpMax);
+            Console.WriteLine("Size:  " + character.Size);
+            Console.WriteLine("Speed: " + character.Speed + "ft");
+        }
+
+        private static void DisplaySkills(DefaultCharacter character) {
             PrintHeader("Skills", character.UnusedSkillPoints);
             foreach (var skill in character.Skills) {
                 Console.Write(skill.Key + ": ");
@@ -41,28 +47,35 @@
             }
         }
 
-        private static void DisplayFeatures(Character character) {
+        private static void DisplayFeatures(DefaultCharacter character) {
             PrintHeader("Features", character.UnusedFeatures);
             foreach (var feat in character.Features) {
                 Console.WriteLine(feat);
             }
         }
 
-        private static void DisplayOneHandedAttacks(Character character) {
+        private static void DisplayOneHandedAttacks(DefaultCharacter character) {
             PrintHeader("Attacks");
             foreach (var attack in character.GetAttacks(WeaponType.OneHanded)) {
-                Console.WriteLine(String.Format("{0}: +{1}", attack.Key, attack.Value));
+                Console.WriteLine(String.Format("+{0}", attack));
             }
         }
 
-        private static void DisplaySaves(Character character) {
+        private static void DisplayEquipment(DefaultCharacter character) {
+            PrintHeader("Equipment");
+            foreach (var slot in character.Equipment.Slots.Where(x => x.Value != null)) {
+                Console.WriteLine(string.Format("{0}: {1}", slot.Key, slot.Value.Name));
+            }
+        }
+
+        private static void DisplaySaves(DefaultCharacter character) {
             PrintHeader("Saves");
             Console.WriteLine("Fortitude: " + character.FortitudeSave);
             Console.WriteLine("Reflex:    " + character.ReflexSave);
             Console.WriteLine("Will:      " + character.WillSave);
         }
 
-        private static void DisplayAttributes(Character character) {
+        private static void DisplayAttributes(DefaultCharacter character) {
             PrintHeader("Attributes", character.UnusedAttributePoints);
             foreach (var attr in character.Attributes) {
                 Console.WriteLine(String.Format("{0} ({1}) {2}", attr.Score, attr.Modifier, attr.Type));

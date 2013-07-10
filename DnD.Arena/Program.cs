@@ -1,40 +1,56 @@
 ﻿namespace DnD.Arena
 {
     using System;
+    using Dnd.CharGenerator;
     using Dnd.Core;
-    using Dnd.Core.Enums;
+    using Dnd.Core.Actions;
+    using Dnd.Core.Character;
+    using Dnd.Core.Character.Attributes;
+    using Dnd.Core.Classes;
     using Dnd.Core.Items.Armor;
     using Dnd.Core.Items.Shields;
     using Dnd.Core.Items.Weapons;
+    using Dnd.Core.Races;
 
     class Program
     {
-        private static Character _player1;
-        private static Character _player2;
+        private static DefaultCharacter _player1;
+        private static DefaultCharacter _player2;
 
         static void Main(string[] args) {
-            _player1 = CharacterCreator.CreateCharacter(Race.Human, Class.Fighter, 8);
+            _player1 = CharacterCreator.CreateCharacter(Race.Human, ClassType.Fighter, 8);
+            _player1.SetExperienceToNextLevel();
+            _player1.LevelUp(ClassType.Barbarian);
+            _player1.SetExperienceToNextLevel();
+            _player1.LevelUp(ClassType.Barbarian);
+            _player1.SetExperienceToNextLevel();
+            _player1.LevelUp(ClassType.Barbarian);
             _player1.Name = "Roga";
             _player1.IncreaseAttribute(AttributeType.Strength, 4);
             _player1.IncreaseAttribute(AttributeType.Dexterity, 4);
-            _player2 = CharacterCreator.CreateCharacter(Race.Human, Class.Fighter, 8);
+
+            _player2 = CharacterCreator.CreateCharacter(Race.Human, ClassType.Fighter, 8);
             _player2.Name = "Armus";
             _player2.IncreaseAttribute(AttributeType.Strength, 4);
             _player2.IncreaseAttribute(AttributeType.Dexterity, 4);
 
-            var greatsword = new GreatSword(Size.Medium);
-            var longsword = new LongSword(Size.Medium);
+            var greatsword = new Greatsword(Size.Medium);
+            var longsword = new Longsword(Size.Medium);
             _player1.EquipItem(greatsword);
-            _player1.EquipItem(new BreastPlate(Size.Medium));
+            _player1.EquipItem(new Breastplate(Size.Medium));
             _player2.EquipItem(longsword);
             _player2.EquipItem(new TowerShield(Size.Medium));
+
+            ConsoleSheet.Display(_player1);
+            Console.WriteLine();
+            ConsoleSheet.Display(_player2);
+            Console.ReadKey();
 
             var arena = new Arena(_player1, _player2);
             arena.AttackMade += new EventHandler<AttackEventArgs>(arena_AttackMade);
             arena.Attacked += new EventHandler<AttackEventArgs>(arena_Attacked);
             arena.FightDone += new EventHandler(arena_FightDone);
             arena.StartFight();
-            Console.ReadKey();
         }
 
         static void arena_FightDone(object sender, EventArgs e) {

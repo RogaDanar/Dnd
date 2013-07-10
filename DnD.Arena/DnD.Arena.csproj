@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dnd.Console\Dnd.CharGenerator.csproj">
+      <Project>{42DE2D1C-0798-40B0-AD40-966E0C433FBC}</Project>
+      <Name>Dnd.CharGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dnd.Core\Dnd.Core.csproj">
       <Project>{ADB679A0-4036-4B81-957B-D3D9E6BC8766}</Project>
       <Name>Dnd.Core</Name>

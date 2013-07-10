@@ -2,11 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using Dnd.Core.Character;
     using Dnd.Core.Dice;
-    using Dnd.Core.Enums;
 
-    public class GreatSword : AbstractTwoHandedWeapon
+    public class Greatsword : AbstractTwoHandedWeapon
     {
+        public override string Name { get { return "Greatsword"; } }
+
         public override IEnumerable<IDie> DamageDice {
             get {
                 switch (Size) {
@@ -33,7 +35,7 @@
 
         public override int CritMultiplier { get { return 2; } }
 
-        public GreatSword(Size size) {
+        public Greatsword(Size size) {
             Size = size;
         }
     }

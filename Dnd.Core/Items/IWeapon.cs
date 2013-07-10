@@ -1,8 +1,9 @@
 ﻿namespace Dnd.Core.Items
 {
     using System.Collections.Generic;
+    using Dnd.Core.Character;
+    using Dnd.Core.Character.Attacks;
     using Dnd.Core.Dice;
-    using Dnd.Core.Enums;
 
     public interface IWeapon : IItem, ISize
     {

@@ -1,12 +1,13 @@
-﻿namespace Dnd.UI.ViewModels
+﻿using Dnd.Core.Character;
+
+namespace Dnd.UI.ViewModels
 {
     using System.ComponentModel;
-    using Dnd.Core;
 
     public class CharacterWindowViewModel : INotifyPropertyChanged
     {
-        private Character _character;
-        public Character Character {
+        private DefaultCharacter _character;
+        public DefaultCharacter Character {
             get {
                 return _character;
             }

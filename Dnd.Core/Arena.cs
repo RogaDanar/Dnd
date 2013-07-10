@@ -2,6 +2,8 @@
 {
     using System;
     using Dnd.Core.Actions;
+    using Dnd.Core.Actions.Attacks;
+    using Dnd.Core.Character;
 
     public class Arena
     {
@@ -26,10 +28,10 @@
             }
         }
 
-        private Character _character1;
-        private Character _character2;
+        private readonly DefaultCharacter _character1;
+        private readonly DefaultCharacter _character2;
 
-        public Arena(Character character1, Character character2) {
+        public Arena(DefaultCharacter character1, DefaultCharacter character2) {
             _character1 = character1;
             _character2 = character2;
         }
