@@ -1,22 +1,25 @@
-﻿namespace Dnd.Core.Character.Saves
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
+namespace Dnd.Core.Character.Saves
+{
     public class SavesList
     {
-        private readonly Dictionary<SaveBonusType, ISaveBonus> _bonusses = new Dictionary<SaveBonusType, ISaveBonus> {  
-            { SaveBonusType.Poor, new PoorSaveBonus()},
-            { SaveBonusType.Good, new GoodSaveBonus()}        
-        };
+        private readonly DefaultCharacter _character;
 
-        public Save FortitudeSave { get; private set; }
-        public Save ReflexSave { get; private set; }
-        public Save WillSave { get; private set; }
+        public Dictionary<SaveType, int> Bonusses { get; private set; }
 
-        public SavesList(SaveBonusType fortitude, SaveBonusType reflex, SaveBonusType will, int level) {
-            FortitudeSave = new Save(_bonusses[fortitude], level);
-            ReflexSave = new Save(_bonusses[reflex], level);
-            WillSave = new Save(_bonusses[will], level);
+        public int Fortitude { get { return _character.Classes.Sum(x => x.Value.FortitudeSave.Value) + Bonusses[SaveType.Fortitude]; } }
+        public int Reflex { get { return _character.Classes.Sum(x => x.Value.ReflexSave.Value) + Bonusses[SaveType.Reflex]; } }
+        public int Will { get { return _character.Classes.Sum(x => x.Value.WillSave.Value) + Bonusses[SaveType.Will]; } }
+
+        public SavesList(DefaultCharacter character) {
+            _character = character;
+            Bonusses = new Dictionary<SaveType, int> { { SaveType.Fortitude, 0 }, { SaveType.Reflex, 0 }, { SaveType.Will, 0 } };
+        }
+
+        public void AddBonus(SaveType saveType, int amount) {
+            Bonusses[saveType] += amount;
         }
     }
 }

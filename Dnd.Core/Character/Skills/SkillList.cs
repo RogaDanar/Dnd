@@ -1,15 +1,19 @@
-﻿namespace Dnd.Core.Character.Skills
+﻿using System.Collections;
+
+namespace Dnd.Core.Character.Skills
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Dnd.Core.Character.Attributes;
     using Dnd.Core.Extensions;
 
-    public class SkillList
+    public class SkillList : IEnumerable<KeyValuePair<SkillType, int>>
     {
-        private List<Skill> _list = new List<Skill>();
-        private AttributeList _attributes;
+        private readonly DefaultCharacter _character;
+
+        private readonly List<Skill> _list = new List<Skill>();
+
+        public int UnusedRanks { get; private set; }
 
         public int this[SkillType type] {
             get {
@@ -21,8 +25,8 @@
             }
         }
 
-        public SkillList(AttributeList attributes) {
-            _attributes = attributes;
+        public SkillList(DefaultCharacter character) {
+            _character = character;
             var skills = Enum.GetValues(typeof(SkillType)).Cast<SkillType>();
             foreach (var skill in skills) {
                 var trainedOnly = skill.GetAttribute<TrainedOnlyAttribute>();
@@ -32,6 +36,10 @@
             }
         }
 
+        public void AddRanks(int amount) {
+            UnusedRanks += amount;
+        }
+
         public void Increase(SkillType skill, int points, string subSkill = null) {
             if (_list.SingleOrDefault(x => x.Type == skill && x.SubSkill == subSkill) == null) {
                 _list.Add(new Skill(skill, subSkill));
@@ -39,7 +47,7 @@
             _list.Single(x => x.Type == skill && x.SubSkill == subSkill).Increase(points);
         }
 
-        public void IncreaseBonus(SkillType skill, int points, string subSkill) {
+        public void IncreaseBonus(SkillType skill, int points, string subSkill = null) {
             if (_list.SingleOrDefault(x => x.Type == skill && x.SubSkill == subSkill) == null) {
                 _list.Add(new Skill(skill, subSkill));
             };
@@ -50,20 +58,28 @@
             return _list.Sum(x => x.Ranks);
         }
 
-        public IEnumerable<KeyValuePair<SkillType, int>> GetAllSkills() {
+        public IEnumerable<KeyValuePair<SkillType, int>> GetAll() {
             foreach (var skill in _list) {
                 yield return new KeyValuePair<SkillType, int>(skill.Type, GetScore(skill));
             }
         }
 
         private int GetScore(Skill skill) {
-            var score = skill.Ranks + skill.MiscModifier + _attributes[skill.AbilityModifierType].Modifier;
+            var score = skill.Ranks + skill.MiscModifier + _character.Attributes[skill.AbilityModifierType].Modifier;
             foreach (var synergyFromSkill in skill.SynergyFromSkills) {
                 if (this[synergyFromSkill] >= 5) {
                     score += 2;
                 }
             }
             return score;
+        }
+
+        public IEnumerator<KeyValuePair<SkillType, int>> GetEnumerator() {
+            return GetAll().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
         }
     }
 }

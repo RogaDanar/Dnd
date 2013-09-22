@@ -15,25 +15,25 @@
         public override SaveBonusType WillSaveType { get { return SaveBonusType.Poor; } }
         public override AttackBonusType AttackBonusType { get { return AttackBonusType.Good; } }
 
-        public override int GetSkillPointsCreation(DefaultCharacter subject) {
+        public override int GetSkillPointsCreation(ICharacter subject) {
             return (6 + subject.Intelligence.Modifier) * 4;
         }
-        public override int GetSkillPointsLevel(DefaultCharacter subject) {
+        public override int GetSkillPointsLevel(ICharacter subject) {
             return 6 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(DefaultCharacter subject) {
+        public override void ModifyOnCreation(ICharacter subject) {
             base.ModifyOnCreation(subject);
 
-            subject.AddFeature(Feature.SimpleWeaponProficiency);
-            subject.AddFeature(Feature.MartialWeaponProficiency);
-            subject.AddFeature(Feature.LightArmorProficiency);
-            subject.AddFeature(Feature.ShieldProficiency);
-            subject.AddFeature(Feature.Track);
-            //subject.AddFeature(Feature.WildEmpathy);
+            subject.Features.Add(Feature.SimpleWeaponProficiency);
+            subject.Features.Add(Feature.MartialWeaponProficiency);
+            subject.Features.Add(Feature.LightArmorProficiency);
+            subject.Features.Add(Feature.ShieldProficiency);
+            subject.Features.Add(Feature.Track);
+            //subject.Features.Add(Feature.WildEmpathy);
         }
 
-        public override void ModifyOnLevel(DefaultCharacter subject) {
+        public override void ModifyOnLevel(ICharacter subject) {
             base.ModifyOnLevel(subject);
         }
     }

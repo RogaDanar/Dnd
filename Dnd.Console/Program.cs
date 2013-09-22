@@ -37,9 +37,7 @@
                 return 1;
             }
 
-            var character = CharacterCreator.CreateCharacter(race, classType, level).SetAbilities(abilityScores);
-            character.SetExperienceToNextLevel();
-            character.LevelUp(ClassType.Fighter);
+            var character = CharacterCreator.CreateCharacter(race, classType, level, abilityScores);
 
             // write the charactersheet to the console
             ConsoleSheet.Display(character);

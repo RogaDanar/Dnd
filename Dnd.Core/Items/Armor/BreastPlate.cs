@@ -11,7 +11,7 @@
         public int ArmorCheckPenalty { get { return -4; } }
         public Size Size { get; protected set; }
 
-        public IEnumerable<EqSlot> Slots { get { return new List<EqSlot> { EqSlot.Body }; } }
+        public IEnumerable<EquipmentSlot> Slots { get { return new List<EquipmentSlot> { EquipmentSlot.Body }; } }
 
         public Breastplate(Size size) {
             Size = size;

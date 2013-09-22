@@ -5,6 +5,7 @@
     public interface IItem
     {
         string Name { get; }
-        IEnumerable<EqSlot> Slots { get; }
+
+        IEnumerable<EquipmentSlot> Slots { get; }
     }
 }

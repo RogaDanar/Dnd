@@ -9,44 +9,29 @@
         <viewmodel:CharacterWindowViewModel />
     </Window.DataContext>
     <Grid>
-        <Button Click="buttonCreate_Click"
-                Content="Create New Character"
-                Height="23"
-                HorizontalAlignment="Left"
-                Margin="15,171,0,0"
-                Name="createBtn"
-                VerticalAlignment="Top"
-                Width="134" />
-        <ListBox DataContext="{Binding Character}"
-                 ItemsSource="{Binding Attributes}"
-                 Width="187"
-                 Height="150"
-                 HorizontalAlignment="Left"
-                 Margin="15,15,0,0"
-                 Name="attributesView"
-                 VerticalAlignment="Top">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Path=Score}" 
-                           Height="20"
-                           Padding="0"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Click="lvlBtn_Click"
-                Visibility="Hidden"
-                Content="Level"
-                Height="23"
-                HorizontalAlignment="Left"
-                Margin="155,171,0,0"
-                Name="lvlBtn"
-                VerticalAlignment="Top"
-                Width="47" />
-        <Label Content="{Binding Character.UnassignedPoints}"
-               Height="28"
-               HorizontalAlignment="Left"
-               Margin="204,16,0,0"
-               Name="unassignedLbl"
-               VerticalAlignment="Top" />
+        <StackPanel DataContext="{Binding Character}">
+            <Button Click="ButtonCreateClick" Content="Create New Character" HorizontalAlignment="Left" Name="CreateBtn" VerticalAlignment="Top" />
+            <ListBox ItemsSource="{Binding Attributes}" HorizontalAlignment="Left" Name="AttributesView" VerticalAlignment="Top">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Path=Type}" Padding="0" Margin="0" />
+                            <Label Content=": " Padding="0" Margin="0" />
+                            <Label Content="{Binding Path=Score}" Padding="0" Margin="0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Label Content="{Binding Path=Experience.UnusedLevels}"
+                   HorizontalAlignment="Right"
+                   Name="UnassignedLbl"
+                   VerticalAlignment="Top"/>
+            <Button Click="LvlBtnClick"
+                    Visibility="Hidden"
+                    Content="Level"
+                    HorizontalAlignment="Right"
+                    Name="LvlBtn"
+                    VerticalAlignment="Top" />
+        </StackPanel>
     </Grid>
 </Window>

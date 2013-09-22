@@ -1,6 +1,6 @@
 ﻿namespace Dnd.Core.Items
 {
-    public enum EqSlot
+    public enum EquipmentSlot
     {
         Body,
         Head,

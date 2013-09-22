@@ -7,6 +7,6 @@
     {
         public override WeaponType Type { get { return WeaponType.OneHanded; } }
 
-        public override IEnumerable<EqSlot> Slots { get { return new List<EqSlot> { EqSlot.RightHand }; } }
+        public override IEnumerable<EquipmentSlot> Slots { get { return new List<EquipmentSlot> { EquipmentSlot.RightHand }; } }
     }
 }

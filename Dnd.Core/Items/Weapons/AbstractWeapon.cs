@@ -13,13 +13,14 @@
 
         public virtual Size Size { get; protected set; }
 
-        public abstract IEnumerable<IDie> DamageDice { get; }
+        public int DamageTier { get; protected set; }
 
-        public abstract IEnumerable<EqSlot> Slots { get; }
+        public virtual IEnumerable<IDie> DamageDice { get { return WeaponDiceTable.GetDamageDice(Size, DamageTier); } }
+
+        public abstract IEnumerable<EquipmentSlot> Slots { get; }
 
         public abstract int CritRange { get; }
 
         public abstract int CritMultiplier { get; }
-
     }
 }

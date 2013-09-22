@@ -6,12 +6,12 @@
 
     public class Equipment
     {
-        public Dictionary<EqSlot, IItem> Slots { get; private set; }
+        public Dictionary<EquipmentSlot, IItem> Slots { get; private set; }
 
         public Equipment() {
-            Slots = new Dictionary<EqSlot, IItem>();
-            Enum.GetValues(typeof(EqSlot))
-                .Cast<EqSlot>()
+            Slots = new Dictionary<EquipmentSlot, IItem>();
+            Enum.GetValues(typeof(EquipmentSlot))
+                .Cast<EquipmentSlot>()
                 .ToList()
                 .ForEach(x => Slots.Add(x, default(IItem)));
         }
@@ -23,7 +23,7 @@
         }
 
         public IWeapon GetEquipedWeapon() {
-            return Slots[EqSlot.RightHand] as IWeapon;
+            return Slots[EquipmentSlot.RightHand] as IWeapon;
         }
 
         public int GetArmorAc() {

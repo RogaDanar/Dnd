@@ -14,25 +14,25 @@
         public override SaveBonusType WillSaveType { get { return SaveBonusType.Good; } }
         public override AttackBonusType AttackBonusType { get { return AttackBonusType.Poor; } }
 
-        public override int GetSkillPointsCreation(DefaultCharacter subject) {
+        public override int GetSkillPointsCreation(ICharacter subject) {
             return (2 + subject.Intelligence.Modifier) * 4;
         }
-        public override int GetSkillPointsLevel(DefaultCharacter subject) {
+        public override int GetSkillPointsLevel(ICharacter subject) {
             return 2 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(DefaultCharacter subject) {
+        public override void ModifyOnCreation(ICharacter subject) {
             base.ModifyOnCreation(subject);
 
-            //subject.AddFeature("Summon Familiar");
-            //subject.AddFeature("Scribe Scroll");
+            //subject.Features.Add("Summon Familiar");
+            //subject.Features.Add("Scribe Scroll");
         }
 
-        public override void ModifyOnLevel(DefaultCharacter subject) {
+        public override void ModifyOnLevel(ICharacter subject) {
             base.ModifyOnLevel(subject);
 
-            if (subject.Level % 5 == 0) {
-                subject.AddFeatures(1);
+            if (subject.Experience.Level % 5 == 0) {
+                subject.Features.IncreaseFeatureCount(1);
             }
         }
     }

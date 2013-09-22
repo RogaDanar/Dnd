@@ -11,14 +11,14 @@
         /// <summary>
         /// Returns the base character modifier, which adds the base features and attributepoints for any character
         /// </summary>
-        public IModifier<DefaultCharacter> GetBaseModifier() {
+        public IModifier<ICharacter> GetBaseModifier() {
             return new CharacterModifier();
         }
 
         /// <summary>
         /// returns the Race modifier, which adjust race specific penalties and bonuses on a character
         /// </summary>
-        public IModifier<DefaultCharacter> GetRaceModifier(Race race) {
+        public IModifier<ICharacter> GetRaceModifier(Race race) {
             switch (race) {
                 case Race.Elf:
                     return new ElfModifier();

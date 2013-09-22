@@ -55,6 +55,10 @@
       <Project>{ADB679A0-4036-4B81-957B-D3D9E6BC8766}</Project>
       <Name>Dnd.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dnd.Vornia\Dnd.Vornia.csproj">
+      <Project>{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}</Project>
+      <Name>Dnd.Vornia</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

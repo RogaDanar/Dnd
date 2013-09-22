@@ -9,7 +9,7 @@
         ClassType ClassType { get; }
         IClassModifier Modifier { get; }
         int Level { get; }
-        SavesList Saves { get; }
+        ClassSaves Saves { get; }
         Save FortitudeSave { get; }
         Save ReflexSave { get; }
         Save WillSave { get; }

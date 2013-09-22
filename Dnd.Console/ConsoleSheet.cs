@@ -26,17 +26,18 @@
 
         private static void DisplayStatus(DefaultCharacter character) {
             PrintHeader("Character Sheet");
-            Console.WriteLine("Level: " + character.Level);
-            Console.WriteLine("XP:    " + character.Experience);
+            Console.WriteLine("Name:  " + character.Name);
+            Console.WriteLine("Level: " + character.Experience.Level);
+            Console.WriteLine("XP:    " + character.Experience.Current);
             Console.WriteLine("Race:  " + character.Race);
             Console.WriteLine("Class: " + string.Join(", ", character.Classes.Keys.ToArray()));
-            Console.WriteLine("HP:    " + character.HpMax);
+            Console.WriteLine("HP:    " + character.Hitpoints.Max);
             Console.WriteLine("Size:  " + character.Size);
             Console.WriteLine("Speed: " + character.Speed + "ft");
         }
 
         private static void DisplaySkills(DefaultCharacter character) {
-            PrintHeader("Skills", character.UnusedSkillPoints);
+            PrintHeader("Skills", character.Skills.UnusedRanks);
             foreach (var skill in character.Skills) {
                 Console.Write(skill.Key + ": ");
                 if (skill.Value > 0) {
@@ -48,7 +49,7 @@
         }
 
         private static void DisplayFeatures(DefaultCharacter character) {
-            PrintHeader("Features", character.UnusedFeatures);
+            PrintHeader("Features", character.Features.UnusedFeatures);
             foreach (var feat in character.Features) {
                 Console.WriteLine(feat);
             }
@@ -56,7 +57,7 @@
 
         private static void DisplayOneHandedAttacks(DefaultCharacter character) {
             PrintHeader("Attacks");
-            foreach (var attack in character.GetAttacks(WeaponType.OneHanded)) {
+            foreach (var attack in character.Attacks.GetAttacks(WeaponType.OneHanded)) {
                 Console.WriteLine(String.Format("+{0}", attack));
             }
         }
@@ -70,13 +71,13 @@
 
         private static void DisplaySaves(DefaultCharacter character) {
             PrintHeader("Saves");
-            Console.WriteLine("Fortitude: " + character.FortitudeSave);
-            Console.WriteLine("Reflex:    " + character.ReflexSave);
-            Console.WriteLine("Will:      " + character.WillSave);
+            Console.WriteLine("Fortitude: " + character.Saves.Fortitude);
+            Console.WriteLine("Reflex:    " + character.Saves.Reflex);
+            Console.WriteLine("Will:      " + character.Saves.Will);
         }
 
         private static void DisplayAttributes(DefaultCharacter character) {
-            PrintHeader("Attributes", character.UnusedAttributePoints);
+            PrintHeader("Attributes", character.Attributes.UnusedPoints);
             foreach (var attr in character.Attributes) {
                 Console.WriteLine(String.Format("{0} ({1}) {2}", attr.Score, attr.Modifier, attr.Type));
             }

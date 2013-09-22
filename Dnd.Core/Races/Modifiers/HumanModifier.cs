@@ -7,17 +7,17 @@
         public override Size Size { get { return Size.Medium; } }
         public override int Speed { get { return 30; } }
 
-        public override void ModifyOnCreation(DefaultCharacter subject) {
+        public override void ModifyOnCreation(ICharacter subject) {
             base.ModifyOnCreation(subject);
 
-            subject.AddFeatures(1);
-            subject.AddSkillPoints(4);
+            subject.Features.IncreaseFeatureCount(1);
+            subject.Skills.AddRanks(4);
         }
 
-        public override void ModifyOnLevel(DefaultCharacter subject) {
+        public override void ModifyOnLevel(ICharacter subject) {
             base.ModifyOnLevel(subject);
 
-            subject.AddSkillPoints(1);
+            subject.Skills.AddRanks(1);
         }
     }
 }

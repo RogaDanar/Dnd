@@ -1,8 +1,12 @@
-﻿using Dnd.Core.Character;
-
-namespace Dnd.UI.ViewModels
+﻿namespace Dnd.UI.ViewModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel;
+    using Dnd.Core.Character;
+    using Dnd.Core.Character.Attributes;
+    using Dnd.Core.Character.Modifiers;
+    using Dnd.Core.Classes;
+    using Dnd.Core.Races;
 
     public class CharacterWindowViewModel : INotifyPropertyChanged
     {
@@ -23,6 +27,14 @@ namespace Dnd.UI.ViewModels
             if (handler != null) {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        internal void CreateCharacter() {
+            Character = new DefaultCharacter(ClassType.Barbarian, Race.Gnome, new Dictionary<AttributeType, int>(), new ModifierProvider());
+        }
+
+        internal void SetCharacterToNextLevel() {
+            Character.Experience.SetToNextLevel();
         }
     }
 }

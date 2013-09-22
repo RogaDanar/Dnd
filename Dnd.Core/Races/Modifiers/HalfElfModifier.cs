@@ -9,20 +9,16 @@
         public override Size Size { get { return Size.Medium; } }
         public override int Speed { get { return 30; } }
 
-        public override void ModifyOnCreation(DefaultCharacter subject) {
+        public override void ModifyOnCreation(ICharacter subject) {
             base.ModifyOnCreation(subject);
 
-            subject.AddFeature(Feature.LowLightVision);
+            subject.Features.Add(Feature.LowLightVision);
 
-            subject.IncreaseSkillBonus(SkillType.Listen, 1);
-            subject.IncreaseSkillBonus(SkillType.Search, 1);
-            subject.IncreaseSkillBonus(SkillType.Spot, 1);
-            subject.IncreaseSkillBonus(SkillType.Diplomacy, 2);
-            subject.IncreaseSkillBonus(SkillType.GatherInformation, 2);
-        }
-
-        public override void ModifyOnLevel(DefaultCharacter subject) {
-            base.ModifyOnLevel(subject);
+            subject.Skills.IncreaseBonus(SkillType.Listen, 1);
+            subject.Skills.IncreaseBonus(SkillType.Search, 1);
+            subject.Skills.IncreaseBonus(SkillType.Spot, 1);
+            subject.Skills.IncreaseBonus(SkillType.Diplomacy, 2);
+            subject.Skills.IncreaseBonus(SkillType.GatherInformation, 2);
         }
     }
 }

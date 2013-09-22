@@ -9,6 +9,8 @@
     {
         WeaponType Type { get; }
 
+        int DamageTier { get; }
+
         IEnumerable<IDie> DamageDice { get; }
 
         int CritRange { get; }

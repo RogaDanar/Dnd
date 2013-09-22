@@ -10,20 +10,16 @@
         public override Size Size { get { return Size.Small; } }
         public override int Speed { get { return 20; } }
 
-        public override void ModifyOnCreation(DefaultCharacter subject) {
+        public override void ModifyOnCreation(ICharacter subject) {
             base.ModifyOnCreation(subject);
 
-            subject.IncreaseAttribute(AttributeType.Constitution, 2);
-            subject.DecreaseAttribute(AttributeType.Strength, 2);
+            subject.Attributes.Increase(AttributeType.Constitution, 2);
+            subject.Attributes.Decrease(AttributeType.Strength, 2);
 
-            subject.AddFeature(Feature.LowLightVision);
+            subject.Features.Add(Feature.LowLightVision);
 
-            subject.IncreaseSkillBonus(SkillType.Listen, 2);
-            subject.IncreaseSkillBonus(SkillType.Craft, 2);
-        }
-
-        public override void ModifyOnLevel(DefaultCharacter subject) {
-            base.ModifyOnLevel(subject);
+            subject.Skills.IncreaseBonus(SkillType.Listen, 2);
+            subject.Skills.IncreaseBonus(SkillType.Craft, 2);
         }
     }
 }

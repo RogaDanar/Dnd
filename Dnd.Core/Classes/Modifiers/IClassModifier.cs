@@ -3,9 +3,9 @@
     using Dnd.Core.Character;
     using Dnd.Core.Character.Modifiers;
 
-    public interface IClassModifier : IModifier<DefaultCharacter>
+    public interface IClassModifier : IModifier<ICharacter>
     {
         ClassType ClassType { get; }
-        void ModifyOnMultiClass(DefaultCharacter subject);
+        void ModifyOnMultiClass(ICharacter subject);
     }
 }

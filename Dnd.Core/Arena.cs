@@ -28,28 +28,28 @@
             }
         }
 
-        private readonly DefaultCharacter _character1;
-        private readonly DefaultCharacter _character2;
+        public DefaultCharacter Character1 { get; private set; }
+        public DefaultCharacter Character2 { get; private set; }
 
         public Arena(DefaultCharacter character1, DefaultCharacter character2) {
-            _character1 = character1;
-            _character2 = character2;
+            Character1 = character1;
+            Character2 = character2;
         }
 
         public void StartFight() {
-            while (_character1.HpCurrent > 0 && _character2.HpCurrent > 0) {
-                if (_character1.HpCurrent > 0) {
-                    var results = new FullAttack(_character1, _character2).Execute();
+            while (Character1.Hitpoints.Current > 0 && Character2.Hitpoints.Current > 0) {
+                if (Character1.Hitpoints.Current > 0) {
+                    var results = new FullAttack(Character1, Character2).Execute();
                     foreach (var result in results) {
-                        _character2.HpCurrent -= result.Damage;
-                        OnAttackMade(new AttackEventArgs(_character1.Name, result.Attack, result.Damage));
+                        Character2.Hitpoints.Current -= result.Damage;
+                        OnAttackMade(new AttackEventArgs(Character1, result));
                     }
                 }
-                if (_character2.HpCurrent > 0) {
-                    var results = new FullAttack(_character2, _character1).Execute();
+                if (Character2.Hitpoints.Current > 0) {
+                    var results = new FullAttack(Character2, Character1).Execute();
                     foreach (var result in results) {
-                        _character1.HpCurrent -= result.Damage;
-                        OnAttacked(new AttackEventArgs(_character2.Name, result.Attack, result.Damage));
+                        Character1.Hitpoints.Current -= result.Damage;
+                        OnAttacked(new AttackEventArgs(Character2, result));
                     }
                 }
             }

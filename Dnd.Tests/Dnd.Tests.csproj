@@ -54,10 +54,6 @@
       <Project>{ADB679A0-4036-4B81-957B-D3D9E6BC8766}</Project>
       <Name>Dnd.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\dnd_tool\Dnd.UI.csproj">
-      <Project>{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}</Project>
-      <Name>Dnd.UI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

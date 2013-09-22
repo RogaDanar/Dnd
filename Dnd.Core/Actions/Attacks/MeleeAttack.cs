@@ -9,7 +9,7 @@
             Attacker = attacker;
             Defender = defender;
             Attack = attack;
-            _flatFooted = flatFooted;
+            _surprise = flatFooted;
         }
 
         public override IEnumerable<AttackResult> Execute() {

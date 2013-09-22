@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Dnd.Core.Character.Attacks;
     using Dnd.Core.Character.Attributes;
     using Dnd.Core.Character.Features;
@@ -14,63 +13,45 @@
     using Dnd.Core.Items;
     using Dnd.Core.Races;
 
-    public class DefaultCharacter : IModifiable<DefaultCharacter>, ISize
+    public class DefaultCharacter : ICharacter
     {
         private readonly ModifierProvider _modifierProvider;
 
         public string Name { get; set; }
-
-        // Level
-        public int Level { get { return Classes.Sum(x => x.Value.Level); } }
-        // MaxLevel is derived from the experience:  maxLvl = 1/2 + 1/2sqrt(1+xp/125) 
-        public int MaxLevel { get { return (int)Math.Floor((1f + Math.Sqrt(1f + ((double)Experience / 125f))) / 2f); } }
-        public int Experience { get; private set; }
-        public int UnusedLevels { get { return MaxLevel - Level; } }
-        public bool CanLevel { get { return UnusedLevels > 0; } }
-
-        public int UnusedAttributePoints { get; private set; }
-        public int UnusedFeatures { get; private set; }
-        public int UnusedSkillPoints { get; private set; }
 
         // Stats
         public Race Race { get; private set; }
         public Dictionary<ClassType, IClass> Classes { get; private set; }
         public Size Size { get; set; }
         public int Speed { get; set; }
-        public int HpMax { get; set; }
-        public int HpCurrent { get; set; }
-
-        // Saves
-        public Dictionary<SaveType, int> SaveBonusses { get; private set; }
-        public int FortitudeSave { get { return Classes.Sum(x => x.Value.FortitudeSave.Value) + SaveBonusses[SaveType.Fortitude]; } }
-        public int ReflexSave { get { return Classes.Sum(x => x.Value.ReflexSave.Value) + SaveBonusses[SaveType.Reflex]; } }
-        public int WillSave { get { return Classes.Sum(x => x.Value.WillSave.Value) + SaveBonusses[SaveType.Will]; } }
-
-        // Attacks
-        public Dictionary<WeaponType, int> AttackBonusses { get; private set; }
-
-        // TODO: Spells
+        public Hitpoints Hitpoints { get; set; }
+        public Experience Experience { get; set; }
 
         // Attributes
-        private AttributeList _attributes;
-        public IEnumerable<ReadOnlyAttribute> Attributes { get { return _attributes.AsEnumerable(); } }
-        public ReadOnlyAttribute Strength { get { return _attributes[AttributeType.Strength]; } }
-        public ReadOnlyAttribute Dexterity { get { return _attributes[AttributeType.Dexterity]; } }
-        public ReadOnlyAttribute Constitution { get { return _attributes[AttributeType.Constitution]; } }
-        public ReadOnlyAttribute Intelligence { get { return _attributes[AttributeType.Intelligence]; } }
-        public ReadOnlyAttribute Wisdom { get { return _attributes[AttributeType.Wisdom]; } }
-        public ReadOnlyAttribute Charisma { get { return _attributes[AttributeType.Charisma]; } }
+        public AttributeList Attributes { get; private set; }
+        public ReadOnlyAttribute Strength { get { return Attributes.Strength; } }
+        public ReadOnlyAttribute Dexterity { get { return Attributes.Dexterity; } }
+        public ReadOnlyAttribute Constitution { get { return Attributes.Constitution; } }
+        public ReadOnlyAttribute Intelligence { get { return Attributes.Intelligence; } }
+        public ReadOnlyAttribute Wisdom { get { return Attributes.Wisdom; } }
+        public ReadOnlyAttribute Charisma { get { return Attributes.Charisma; } }
+
+        // Saves
+        public SavesList Saves { get; private set; }
+
+        // Attacks
+        public AttackList Attacks { get; private set; }
 
         // Features
-        private FeatureList _features;
-        public IEnumerable<Feature> Features { get { return _features; } }
+        public FeatureList Features { get; private set; }
 
         // Skills
-        private SkillList _skills;
-        public IEnumerable<KeyValuePair<SkillType, int>> Skills { get { return _skills.GetAllSkills(); } }
+        public SkillList Skills { get; private set; }
 
         // Equipment
         public Equipment Equipment { get; private set; }
+
+        // TODO: Spells
 
         public int GetAc(bool flatFooted = false) {
             var dexModifier = flatFooted ? 0 : Dexterity.Modifier;
@@ -78,100 +59,41 @@
             return 10 + dexModifier + armorAc;
         }
 
-        public DefaultCharacter(ClassType classType, Race race, ModifierProvider modifierProvider) {
+        public DefaultCharacter(ClassType classType, Race race, Dictionary<AttributeType, int> abilityScores, ModifierProvider modifierProvider) {
             _modifierProvider = modifierProvider;
-            Classes = new Dictionary<ClassType, IClass> { { classType, ClassProvider.GetNewClass(classType, _modifierProvider) } };
-            SaveBonusses = new Dictionary<SaveType, int> { { SaveType.Fortitude, 0 }, { SaveType.Reflex, 0 }, { SaveType.Will, 0 } };
-            AttackBonusses = new Dictionary<WeaponType, int> { { WeaponType.OneHanded, 0 }, { WeaponType.TwoHanded, 0 }, { WeaponType.Ranged, 0 } };
             Race = race;
-
+            Classes = new Dictionary<ClassType, IClass> { { classType, ClassProvider.GetNewClass(classType, _modifierProvider) } };
+            Attributes = new AttributeList(abilityScores);
+            InitializeProperties();
             OnCreation(classType);
         }
 
-        public IEnumerable<int> GetAttacks(WeaponType weaponType) {
-            var baseAttack = Classes.Sum(x => x.Value.Attack);
-            do {
-                yield return GetAttackScore(baseAttack, weaponType);
-                baseAttack -= 5;
-            } while (baseAttack > 0);
-        }
-
-        public void AddExperience(int amount) {
-            Experience += amount;
-        }
-
-        /// <summary>
-        /// Adds the number of given levels to the character
-        /// </summary>
-        public void SetExperienceToLevel(int levels) {
-            while (levels > 1) {
-                SetExperienceToNextLevel();
-                levels--;
-            }
-        }
-
-        /// <summary>
-        /// Sets the character experience to the amount needed for the next level. 
-        /// TODO: implement multiclassing
-        /// </summary>
-        public void SetExperienceToNextLevel() {
-            Experience = (MaxLevel + 1) * (MaxLevel) * 500;
+        private void InitializeProperties() {
+            Attacks = new AttackList(this);
+            Saves = new SavesList(this);
+            Hitpoints = new Hitpoints();
+            Equipment = new Equipment();
+            Features = new FeatureList();
+            Skills = new SkillList(this);
+            Experience = new Experience(this);
         }
 
         public void LevelUp(ClassType charClass) {
-            if (CanLevel) {
+            if (Experience.CanLevel) {
                 OnLevelGained(charClass);
             }
         }
 
-        public void AddFeature(Feature feature) {
-            _features.AddFeature(feature);
-        }
-
-        public void IncreaseSkillRanks(SkillType skill, int points, string subSkill = null) {
-            _skills.Increase(skill, points, subSkill);
-        }
-
-        public void IncreaseSkillBonus(SkillType skill, int points, string subSkill = null) {
-            _skills.IncreaseBonus(skill, points, subSkill);
-        }
-
-        public void IncreaseAttribute(AttributeType attr, int points) {
-            _attributes.Increase(attr, points);
-        }
-
-        public void DecreaseAttribute(AttributeType attr, int points) {
-            if (_attributes[attr] >= points) {
-                _attributes.Decrease(attr, points);
-            }
-        }
-
-        public void AddAttributePoints(int amount) {
-            UnusedAttributePoints += amount;
-        }
-
-        public void AddFeatures(int amount) {
-            UnusedFeatures += amount;
-        }
-
-        public void AddSkillPoints(int amount) {
-            UnusedSkillPoints += amount;
-        }
-
-        public void AddSaveBonus(SaveType saveType, int amount) {
-            SaveBonusses[saveType] += amount;
-        }
-
-        public void AcceptOnCreation(IModifier<DefaultCharacter> modifier) {
-            if (Experience == 0) {
+        public void AcceptOnCreation(IModifier<ICharacter> modifier) {
+            if (Experience.Current == 0) {
                 modifier.ModifyOnCreation(this);
             } else {
                 throw new InvalidOperationException("Only a new character can be modified with ModifyOnCreation");
             }
         }
 
-        public void AcceptOnLevel(IModifier<DefaultCharacter> modifier) {
-            if (Level <= MaxLevel) {
+        public void AcceptOnLevel(IModifier<ICharacter> modifier) {
+            if (Experience.Level <= Experience.MaxLevel) {
                 modifier.ModifyOnLevel(this);
             } else {
                 throw new InvalidOperationException("The character must be able to level to be modified by ModifyOnLevel");
@@ -179,7 +101,7 @@
         }
 
         public void AcceptOnMultiClass(IClassModifier modifier) {
-            if (Level <= MaxLevel) {
+            if (Experience.Level <= Experience.MaxLevel) {
                 modifier.ModifyOnMultiClass(this);
             } else {
                 throw new InvalidOperationException("The character must be able to level to be modified by ModifyOnMultiClass");
@@ -199,20 +121,15 @@
         }
 
         private void OnCreation(ClassType charClass) {
-            Equipment = new Equipment();
-            _attributes = new AttributeList();
-            _features = new FeatureList();
-            _skills = new SkillList(_attributes);
-            Experience = 0;
-
             AcceptOnCreation(_modifierProvider.GetBaseModifier());
             AcceptOnCreation(_modifierProvider.GetRaceModifier(Race));
             AcceptOnCreation(Classes[charClass].Modifier);
+            Attributes.DoneCreating();
+            Features.DoneCreating();
         }
 
         private void OnLevelGained(ClassType classType) {
-            AcceptOnLevel(_modifierProvider.GetBaseModifier());
-            AcceptOnLevel(_modifierProvider.GetRaceModifier(Race));
+            // Class modifier must be run first, because it changes the Level
             if (Classes.ContainsKey(classType)) {
                 Classes[classType] = ClassProvider.GetNextLevel(Classes[classType], _modifierProvider);
                 AcceptOnLevel(Classes[classType].Modifier);
@@ -220,23 +137,13 @@
                 Classes.Add(classType, ClassProvider.GetNewClass(classType, _modifierProvider));
                 AcceptOnMultiClass(Classes[classType].Modifier);
             }
+            AcceptOnLevel(_modifierProvider.GetBaseModifier());
+            AcceptOnLevel(_modifierProvider.GetRaceModifier(Race));
         }
 
         private bool CanEquip(IItem item) {
             // TODO: fix check
             return true;
-        }
-
-        private int GetAttackScore(int baseAttack, WeaponType weaponType) {
-            switch (weaponType) {
-                case WeaponType.OneHanded:
-                case WeaponType.TwoHanded:
-                    return baseAttack + _attributes[AttributeType.Strength].Modifier + AttackBonusses[weaponType];
-                case WeaponType.Ranged:
-                    return baseAttack + _attributes[AttributeType.Dexterity].Modifier + AttackBonusses[weaponType];
-                default:
-                    throw new ArgumentException("weaponType");
-            }
         }
     }
 }

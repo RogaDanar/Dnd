@@ -17,7 +17,7 @@
         public ClassType ClassType { get; protected set; }
         public IClassModifier Modifier { get; protected set; }
         public int Level { get; protected set; }
-        public SavesList Saves { get; protected set; }
+        public ClassSaves Saves { get; protected set; }
         public Attack Attack { get; protected set; }
 
         public Save FortitudeSave { get { return Saves.FortitudeSave; } }
@@ -28,7 +28,7 @@
             ClassType = classType;
             Level = level;
             Modifier = modifier;
-            Saves = new SavesList(modifier.FortitudeSaveType, modifier.ReflexSaveType, modifier.WillSaveType, Level);
+            Saves = new ClassSaves(modifier.FortitudeSaveType, modifier.ReflexSaveType, modifier.WillSaveType, Level);
             Attack = new Attack(_attackBonusses[modifier.AttackBonusType], level);
         }
     }

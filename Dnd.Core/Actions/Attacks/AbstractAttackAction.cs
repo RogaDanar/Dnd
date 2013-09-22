@@ -11,7 +11,7 @@
         protected D20 _d20 = DiceBag.GetDie<D20>();
 
         protected IWeapon _weapon { get { return Attacker.GetWeapon(); } }
-        protected bool _flatFooted { get; set; }
+        protected bool _surprise { get; set; }
 
         public DefaultCharacter Attacker { get; protected set; }
         public DefaultCharacter Defender { get; protected set; }
@@ -20,21 +20,21 @@
         public abstract IEnumerable<AttackResult> Execute();
 
         protected AttackResult Miss() {
-            return new AttackResult() { Attack = AttackResultType.Miss, Damage = 0 };
+            return new AttackResult() { Type = AttackResultType.Miss, Damage = 0 };
         }
 
         protected AttackResult NormalAttack() {
             var damage = GetDamage();
-            return new AttackResult() { Attack = AttackResultType.Hit, Damage = damage };
+            return new AttackResult() { Type = AttackResultType.Hit, Damage = damage };
         }
 
         protected AttackResult CriticalAttack() {
             var damage = CriticalDamage();
-            return new AttackResult() { Attack = AttackResultType.CriticalHit, Damage = damage };
+            return new AttackResult() { Type = AttackResultType.CriticalHit, Damage = damage };
         }
 
         protected virtual bool IsHit(int attackRoll) {
-            return attackRoll >= Defender.GetAc(_flatFooted);
+            return attackRoll >= Defender.GetAc(_surprise);
         }
 
         protected bool IsPossibleCritical(int attackRoll) {

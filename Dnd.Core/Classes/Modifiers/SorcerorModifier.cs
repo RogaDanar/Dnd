@@ -15,21 +15,21 @@
         public override SaveBonusType WillSaveType { get { return SaveBonusType.Good; } }
         public override AttackBonusType AttackBonusType { get { return AttackBonusType.Poor; } }
 
-        public override int GetSkillPointsCreation(DefaultCharacter subject) {
+        public override int GetSkillPointsCreation(ICharacter subject) {
             return (2 + subject.Intelligence.Modifier) * 4;
         }
-        public override int GetSkillPointsLevel(DefaultCharacter subject) {
+        public override int GetSkillPointsLevel(ICharacter subject) {
             return 2 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(DefaultCharacter subject) {
+        public override void ModifyOnCreation(ICharacter subject) {
             base.ModifyOnCreation(subject);
 
-            subject.AddFeature(Feature.SimpleWeaponProficiency);
-            //subject.AddFeature("Summon Familiar");
+            subject.Features.Add(Feature.SimpleWeaponProficiency);
+            //subject.Features.Add("Summon Familiar");
         }
 
-        public override void ModifyOnLevel(DefaultCharacter subject) {
+        public override void ModifyOnLevel(ICharacter subject) {
             base.ModifyOnLevel(subject);
         }
     }
