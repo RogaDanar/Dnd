@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Dnd.Core.Model.Items.Weapons;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Dnd.Core.Model.Items.Weapons;
 
 namespace Dnd.Core.Model.Character.Attacks
 {
@@ -21,7 +21,7 @@ namespace Dnd.Core.Model.Character.Attacks
             Bonusses = new Dictionary<WeaponType, int> { { WeaponType.OneHanded, 0 }, { WeaponType.TwoHanded, 0 }, { WeaponType.Ranged, 0 } };
         }
 
-        public IEnumerable<int> GetAttacks(WeaponType weaponType) {
+        public IEnumerable<int> GetAttackScores(WeaponType weaponType) {
             var baseAttack = _character.Classes.Sum(x => x.Value.Attack);
             do {
                 yield return GetAttackScore(baseAttack, weaponType);

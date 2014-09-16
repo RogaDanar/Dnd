@@ -1,13 +1,12 @@
 ﻿namespace DnD.Arena
 {
-    using System;
-    using Dnd.Vornia.Character;
     using Dnd.CharGenerator;
-    using Dnd.Core;
     using Dnd.Core.Model.Actions;
     using Dnd.Core.Model.Character;
     using Dnd.Core.Model.Items.Armor;
     using Dnd.Core.Model.Items.Weapons;
+    using Dnd.Vornia.Character;
+    using System;
 
     class Program
     {

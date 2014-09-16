@@ -20,7 +20,7 @@
 
         public MaswariCommander()
             : base(ClassType.Fighter, Race.Human, abilityScores, new ModifierProvider()) {
-            Experience.AddForNextLevels(16);
+            Experience.AddLevels(16);
 
             while (Experience.CanLevel) {
                 LevelUp(ClassType.Fighter);

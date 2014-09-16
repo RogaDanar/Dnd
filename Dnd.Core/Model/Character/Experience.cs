@@ -11,8 +11,14 @@
 
         public int Level { get { return _character.Classes.Sum(x => x.Value.Level); } }
 
-        // MaxLevel is derived from the experience:  maxLvl = 1/2 + 1/2sqrt(1+xp/125) 
-        public int MaxLevel { get { return (int)Math.Floor((1f + Math.Sqrt(1f + ((double)Current / 125f))) / 2f); } }
+        
+        /// <summary>
+        /// MaxLevel is derived from the experience:  maxLvl = 1/2 + 1/2sqrt(1+xp/125) 
+        /// </summary>
+        public int MaxLevel 
+        { 
+            get { return (int)Math.Floor((1f + Math.Sqrt(1f + ((double)Current / 125f))) / 2f); } 
+        }
 
         public int UnusedLevels { get { return MaxLevel - Level; } }
 
@@ -42,7 +48,7 @@
         /// <summary>
         /// Adds experience to gain the given amount of levels
         /// </summary>
-        public void AddForNextLevels(int levels) {
+        public void AddLevels(int levels) {
             while (levels > 1) {
                 SetToNextLevel();
                 levels--;

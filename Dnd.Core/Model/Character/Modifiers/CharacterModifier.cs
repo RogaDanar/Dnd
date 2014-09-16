@@ -1,6 +1,9 @@
 ﻿namespace Dnd.Core.Model.Character.Modifiers
 {
-    public class CharacterModifier : IModifier<ICharacter>
+    /// <summary>
+    /// The base character modifier, which adds the base features and attributepoints for any character
+    /// </summary>
+    public class CharacterModifier : ICharacterModifier
     {
         public void ModifyOnCreation(ICharacter subject) {
             subject.Features.IncreaseFeatureCount(1);

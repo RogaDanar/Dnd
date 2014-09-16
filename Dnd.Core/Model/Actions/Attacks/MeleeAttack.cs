@@ -1,36 +1,70 @@
 ﻿namespace Dnd.Core.Model.Actions.Attacks
 {
+    using Dnd.Core.Model.Dice;
     using System.Collections.Generic;
-    using Dnd.Core.Model.Character;
 
-    class MeleeAttack : AbstractAttackAction
+    public class MeleeAttack : IAction<AttackResult>
     {
-        public MeleeAttack(ICharacter attacker, ICharacter defender, int attack, bool flatFooted = false) {
-            Attacker = attacker;
-            Defender = defender;
-            Attack = attack;
-            _surprise = flatFooted;
+        private D20 _d20 = DiceBag.GetDie<D20>();
+
+        private AttackCalculator _calculator;
+
+        public int Attack { get; private set; }
+
+        public MeleeAttack(AttackCalculator calculator, int attackScore)
+        {
+            _calculator = calculator;
+            Attack = attackScore;
         }
 
-        public override IEnumerable<AttackResult> Execute() {
+        private AttackResult miss()
+        {
+            return new AttackResult { Type = AttackResultType.Miss, Damage = 0 };
+        }
+
+        private AttackResult normalAttack()
+        {
+            var damage = _calculator.GetDamage();
+            return new AttackResult { Type = AttackResultType.Hit, Damage = damage };
+        }
+
+        private AttackResult criticalAttack()
+        {
+            var damage = _calculator.GetCriticalDamage();
+            return new AttackResult { Type = AttackResultType.CriticalHit, Damage = damage };
+        }
+
+        public IEnumerable<AttackResult> Execute()
+        {
             var attackRoll = _d20.Roll();
             var attackModifier = Attack;
 
-            if (IsPossibleCritical(attackRoll)) {
-                if (IsAutomaticHit(attackRoll) || IsHit(attackRoll + attackModifier)) {
+            if (_calculator.IsPossibleCritical(attackRoll))
+            {
+                if (_calculator.IsAutomaticHit(attackRoll) || _calculator.IsHit(attackRoll + attackModifier))
+                {
                     var critRoll = _d20.Roll();
-                    if (IsHit(critRoll + attackModifier)) {
-                        yield return CriticalAttack();
-                    } else {
-                        yield return NormalAttack();
+                    if (_calculator.IsHit(critRoll + attackModifier))
+                    {
+                        yield return criticalAttack();
                     }
-                } else {
-                    yield return Miss();
+                    else
+                    {
+                        yield return normalAttack();
+                    }
                 }
-            } else if (IsHit(attackRoll + attackModifier)) {
-                yield return NormalAttack();
-            } else {
-                yield return Miss();
+                else
+                {
+                    yield return miss();
+                }
+            }
+            else if (_calculator.IsHit(attackRoll + attackModifier))
+            {
+                yield return normalAttack();
+            }
+            else
+            {
+                yield return miss();
             }
         }
     }

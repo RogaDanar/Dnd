@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Actions\Attacks\AbstractAttackAction.cs" />
     <Compile Include="Model\Actions\ActionResult.cs" />
+    <Compile Include="Model\Actions\Attacks\AttackCalculator.cs" />
+    <Compile Include="Model\Actions\Attacks\MeleeAttack.cs" />
     <Compile Include="Model\Actions\Attacks\FullAttack.cs" />
     <Compile Include="Model\Actions\IAction.cs" />
-    <Compile Include="Model\Actions\Attacks\MeleeAttack.cs" />
+    <Compile Include="Model\Actions\IActionSpecification.cs" />
     <Compile Include="Model\Arena.cs" />
     <Compile Include="Model\Actions\AttackEventArgs.cs" />
     <Compile Include="Model\Actions\AttackResult.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Model\Character\Experience.cs" />
     <Compile Include="Model\Character\Hitpoints.cs" />
     <Compile Include="Model\Character\ICharacter.cs" />
+    <Compile Include="Model\Character\Modifiers\ICharacterModifier.cs" />
     <Compile Include="Model\Character\Saves\SavesList.cs" />
     <Compile Include="Model\Classes\CharacterClass.cs" />
     <Compile Include="Model\Classes\ClassProvider.cs" />

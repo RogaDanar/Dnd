@@ -1,12 +1,12 @@
 ﻿namespace Dnd.CharGenerator
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Dnd.Core.Model.Character;
     using Dnd.Core.Model.Character.Attributes;
     using Dnd.Core.Model.Classes;
     using Dnd.Core.Model.Races;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     class Program
     {

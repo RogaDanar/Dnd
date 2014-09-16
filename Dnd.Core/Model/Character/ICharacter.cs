@@ -1,6 +1,5 @@
 ﻿namespace Dnd.Core.Model.Character
 {
-    using System.Collections.Generic;
     using Dnd.Core.Model.Character.Attacks;
     using Dnd.Core.Model.Character.Attributes;
     using Dnd.Core.Model.Character.Features;
@@ -11,6 +10,7 @@
     using Dnd.Core.Model.Classes.Modifiers;
     using Dnd.Core.Model.Items;
     using Dnd.Core.Model.Races;
+    using System.Collections.Generic;
 
     public interface ICharacter : IModifiable<ICharacter>, ISize, IEntity<int>
     {

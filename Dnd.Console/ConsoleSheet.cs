@@ -1,9 +1,9 @@
 ﻿namespace Dnd.CharGenerator
 {
-    using System;
-    using System.Linq;
     using Dnd.Core.Model.Character;
     using Dnd.Core.Model.Items.Weapons;
+    using System;
+    using System.Linq;
 
     /// <summary>
     /// Displays a character to the console
@@ -57,7 +57,7 @@
 
         private static void DisplayOneHandedAttacks(ICharacter character) {
             PrintHeader("Attacks");
-            foreach (var attack in character.Attacks.GetAttacks(WeaponType.OneHanded)) {
+            foreach (var attack in character.Attacks.GetAttackScores(WeaponType.OneHanded)) {
                 Console.WriteLine("+{0}", attack);
             }
         }
