@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Dnd.Core.Character;
-    using Dnd.Core.Character.Attributes;
-    using Dnd.Core.Classes;
-    using Dnd.Core.Races;
+    using Dnd.Core.Model.Character;
+    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Classes;
+    using Dnd.Core.Model.Races;
 
     class Program
     {

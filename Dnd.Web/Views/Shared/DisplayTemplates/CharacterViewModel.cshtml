@@ -1,0 +1,53 @@
+﻿@model CharacterViewModel
+@using Dnd.Web.ViewModels
+
+<div class="form-horizontal no-margin">
+    <div class="control-group">
+        @Html.LabelFor(model => model.Name)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.Name)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Race)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.Race)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Size)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.Size)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Speed)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.Speed)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.HitpointsCurrent)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.HitpointsCurrent)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.HitpointsMax)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.HitpointsMax)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.ExperienceCurrent)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.ExperienceCurrent)</p>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.ExperienceLevel)
+        <div class="controls">
+            <p>@Html.DisplayFor(model => model.ExperienceLevel)</p>
+        </div>
+    </div>
+</div>

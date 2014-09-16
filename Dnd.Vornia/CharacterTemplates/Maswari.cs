@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
-using Dnd.Core.Character.Attributes;
-
-namespace Dnd.Vornia.CharacterTemplates
+﻿namespace Dnd.Vornia.CharacterTemplates
 {
-    using Dnd.Core.Character;
-    using Dnd.Core.Character.Modifiers;
-    using Dnd.Core.Classes;
-    using Dnd.Core.Races;
+    using System.Collections.Generic;
+    using Dnd.Core.Model.Character;
+    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Modifiers;
+    using Dnd.Core.Model.Classes;
+    using Dnd.Core.Model.Races;
 
     public class Maswari : DefaultCharacter
     {
-        private static readonly Dictionary<AttributeType, int> abilityScores = new Dictionary<AttributeType, int>() { 
+        private static readonly Dictionary<AttributeType, int> attributeScores = new Dictionary<AttributeType, int>() { 
                 {AttributeType.Strength, 15},
                 {AttributeType.Dexterity, 15},
                 {AttributeType.Constitution, 14},
@@ -20,11 +19,13 @@ namespace Dnd.Vornia.CharacterTemplates
             };
 
         public Maswari()
-            : base(ClassType.Fighter, Race.Human, abilityScores, new ModifierProvider()) {
+            : base(ClassType.Fighter, Race.Human, attributeScores, new ModifierProvider()) {
             Experience.AddForNextLevels(12);
+
             while (Experience.CanLevel) {
                 LevelUp(ClassType.Fighter);
             }
+
             // Attributes gained from levels
             Attributes.Increase(AttributeType.Strength, 1);
             Attributes.Increase(AttributeType.Dexterity, 1);

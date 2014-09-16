@@ -2,8 +2,8 @@
 {
     using System;
     using System.Linq;
-    using Dnd.Core.Character;
-    using Dnd.Core.Character.Attacks;
+    using Dnd.Core.Model.Character;
+    using Dnd.Core.Model.Items.Weapons;
 
     /// <summary>
     /// Displays a character to the console
@@ -14,7 +14,7 @@
 
         private ConsoleSheet() { }
 
-        public static void Display(DefaultCharacter character) {
+        public static void Display(ICharacter character) {
             DisplayStatus(character);
             DisplayAttributes(character);
             DisplaySaves(character);
@@ -24,7 +24,7 @@
             DisplaySkills(character);
         }
 
-        private static void DisplayStatus(DefaultCharacter character) {
+        private static void DisplayStatus(ICharacter character) {
             PrintHeader("Character Sheet");
             Console.WriteLine("Name:  " + character.Name);
             Console.WriteLine("Level: " + character.Experience.Level);
@@ -36,7 +36,7 @@
             Console.WriteLine("Speed: " + character.Speed + "ft");
         }
 
-        private static void DisplaySkills(DefaultCharacter character) {
+        private static void DisplaySkills(ICharacter character) {
             PrintHeader("Skills", character.Skills.UnusedRanks);
             foreach (var skill in character.Skills) {
                 Console.Write(skill.Key + ": ");
@@ -48,50 +48,50 @@
             }
         }
 
-        private static void DisplayFeatures(DefaultCharacter character) {
+        private static void DisplayFeatures(ICharacter character) {
             PrintHeader("Features", character.Features.UnusedFeatures);
             foreach (var feat in character.Features) {
                 Console.WriteLine(feat);
             }
         }
 
-        private static void DisplayOneHandedAttacks(DefaultCharacter character) {
+        private static void DisplayOneHandedAttacks(ICharacter character) {
             PrintHeader("Attacks");
             foreach (var attack in character.Attacks.GetAttacks(WeaponType.OneHanded)) {
-                Console.WriteLine(String.Format("+{0}", attack));
+                Console.WriteLine("+{0}", attack);
             }
         }
 
-        private static void DisplayEquipment(DefaultCharacter character) {
+        private static void DisplayEquipment(ICharacter character) {
             PrintHeader("Equipment");
             foreach (var slot in character.Equipment.Slots.Where(x => x.Value != null)) {
-                Console.WriteLine(string.Format("{0}: {1}", slot.Key, slot.Value.Name));
+                Console.WriteLine("{0}: {1}", slot.Key, slot.Value.Name);
             }
         }
 
-        private static void DisplaySaves(DefaultCharacter character) {
+        private static void DisplaySaves(ICharacter character) {
             PrintHeader("Saves");
             Console.WriteLine("Fortitude: " + character.Saves.Fortitude);
             Console.WriteLine("Reflex:    " + character.Saves.Reflex);
             Console.WriteLine("Will:      " + character.Saves.Will);
         }
 
-        private static void DisplayAttributes(DefaultCharacter character) {
+        private static void DisplayAttributes(ICharacter character) {
             PrintHeader("Attributes", character.Attributes.UnusedPoints);
             foreach (var attr in character.Attributes) {
-                Console.WriteLine(String.Format("{0} ({1}) {2}", attr.Score, attr.Modifier, attr.Type));
+                Console.WriteLine("{0} ({1}) {2}", attr.Score, attr.Modifier, attr.Type);
             }
         }
 
         private static void PrintHeader(string headerTitle) {
             Console.ForegroundColor = HEADER_COLOR;
-            Console.WriteLine(String.Format("****  {0}", headerTitle));
+            Console.WriteLine("****  {0}", headerTitle);
             Console.ResetColor();
         }
 
         private static void PrintHeader(string headerTitle, int unusedSkillPoints) {
             Console.ForegroundColor = HEADER_COLOR;
-            Console.WriteLine(String.Format("****  {0}    *** Unused: {1}", headerTitle, unusedSkillPoints));
+            Console.WriteLine("****  {0}    *** Unused: {1}", headerTitle, unusedSkillPoints);
             Console.ResetColor();
         }
     }

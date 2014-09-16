@@ -1,17 +1,19 @@
-﻿namespace Dnd.UI.ViewModels
+﻿using Dnd.Core.Model.Races;
+
+namespace Dnd.UI.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel;
-    using Dnd.Core.Character;
-    using Dnd.Core.Character.Attributes;
-    using Dnd.Core.Character.Modifiers;
-    using Dnd.Core.Classes;
-    using Dnd.Core.Races;
+    using Dnd.Core.Model.Character;
+    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Modifiers;
+    using Dnd.Core.Model.Classes;
+    using Dnd.Core.Model.Races;
 
     public class CharacterWindowViewModel : INotifyPropertyChanged
     {
-        private DefaultCharacter _character;
-        public DefaultCharacter Character {
+        private ICharacter _character;
+        public ICharacter Character {
             get {
                 return _character;
             }

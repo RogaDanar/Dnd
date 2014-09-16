@@ -1,37 +1,35 @@
-﻿using Dnd.Vornia.Character;
-
-namespace DnD.Arena
+﻿namespace DnD.Arena
 {
     using System;
+    using Dnd.Vornia.Character;
     using Dnd.CharGenerator;
     using Dnd.Core;
-    using Dnd.Core.Actions;
-    using Dnd.Core.Character;
-    using Dnd.Core.Items.Armor;
-    using Dnd.Core.Items.Shields;
-    using Dnd.Core.Items.Weapons;
+    using Dnd.Core.Model.Actions;
+    using Dnd.Core.Model.Character;
+    using Dnd.Core.Model.Items.Armor;
+    using Dnd.Core.Model.Items.Weapons;
 
     class Program
     {
-        private static DefaultCharacter _player1;
-        private static DefaultCharacter _player2;
+        private static ICharacter _player1;
+        private static ICharacter _player2;
 
         static void Main(string[] args) {
             _player1 = VorniaCharacterCreator.CreateMaswari();
             _player1.Name = "Roga";
-            _player1.EquipItem(new Greatsword(Size.Medium));
-            _player1.EquipItem(new Breastplate(Size.Medium));
+            _player1.Equipment.Equip(new Greatsword(Size.Medium));
+            _player1.Equipment.Equip(new Breastplate(Size.Medium));
 
             _player2 = VorniaCharacterCreator.CreateMaswariCommander();
-            _player2.EquipItem(new Longsword(Size.Medium));
-            _player2.EquipItem(new TowerShield(Size.Medium));
+            _player2.Equipment.Equip(new Longsword(Size.Medium));
+            _player2.Equipment.Equip(new TowerShield(Size.Medium));
 
             ConsoleSheet.Display(_player1);
             Console.WriteLine();
             ConsoleSheet.Display(_player2);
             Console.ReadKey();
 
-            var arena = new Arena(_player1, _player2);
+            var arena = new Dnd.Core.Model.Arena(_player1, _player2);
             arena.AttackMade += ArenaAttackMade;
             arena.Attacked += ArenaAttacked;
             arena.FightDone += ArenaFightDone;
@@ -53,50 +51,44 @@ namespace DnD.Arena
         }
 
         static void ArenaAttackMade(object sender, AttackEventArgs e) {
-            var color = ConsoleColor.White;
-            string result = string.Empty;
+            Console.ForegroundColor = ConsoleColor.White;
             switch (e.AttackResult) {
                 case AttackResultType.Hit:
-                    result = "hit";
-                    color = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("You hit for {0} damage", e.Damage);
                     break;
                 case AttackResultType.CriticalHit:
-                    result = "critically hit";
-                    color = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("You critically hit for {0} damage", e.Damage);
                     break;
                 case AttackResultType.Miss:
-                    result = "miss";
-                    color = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("You miss...");
                     break;
                 default:
                     break;
             }
-            Console.ForegroundColor = color;
-            Console.WriteLine("You {0} for {1} damage", result, e.Damage);
             Console.ResetColor();
         }
 
         static void ArenaAttacked(object sender, AttackEventArgs e) {
-            var color = ConsoleColor.White;
-            string result = string.Empty;
+            Console.ForegroundColor = ConsoleColor.White;
             switch (e.AttackResult) {
                 case AttackResultType.Hit:
-                    result = "hits";
-                    color = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("{0} hits you for {1} damage", e.CharacterName, e.Damage);
                     break;
                 case AttackResultType.CriticalHit:
-                    result = "critically hits";
-                    color = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("{0} critically hits you for {1} damage", e.CharacterName, e.Damage);
                     break;
                 case AttackResultType.Miss:
-                    result = "misses";
-                    color = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("{0} misses you", e.CharacterName);
                     break;
                 default:
                     break;
             }
-            Console.ForegroundColor = color;
-            Console.WriteLine("{0} {1} you for {2} damage", e.CharacterName, result, e.Damage);
             Console.ResetColor();
         }
     }

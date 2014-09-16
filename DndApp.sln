@@ -1,22 +1,23 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.UI", "Dnd.UI\Dnd.UI.csproj", "{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core", "Dnd.Core\Dnd.Core.csproj", "{ADB679A0-4036-4B81-957B-D3D9E6BC8766}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Tests", "Dnd.Tests\Dnd.Tests.csproj", "{F065AA59-9F18-4C8A-83AF-803A9E326C47}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0AE9BC1C-5DA6-4085-8EAC-BAE11978D797}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.CharGenerator", "Dnd.Console\Dnd.CharGenerator.csproj", "{42DE2D1C-0798-40B0-AD40-966E0C433FBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Arena", "DnD.Arena\Dnd.Arena.csproj", "{8618895F-0E6F-4E12-A791-F336D4151530}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Vornia", "Dnd.Vornia\Dnd.Vornia.csproj", "{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Web", "Dnd.Web\Dnd.Web.csproj", "{01A3A365-3125-49D9-91D5-C57E2688859F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Dal", "Dnd.Dal\Dnd.Dal.csproj", "{FAB9CD9C-B074-4645-A149-0971B0C1658E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +89,26 @@ Global
 		{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}.Release|x86.ActiveCfg = Release|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{01A3A365-3125-49D9-91D5-C57E2688859F}.Release|x86.ActiveCfg = Release|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
