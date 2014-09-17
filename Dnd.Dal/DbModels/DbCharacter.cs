@@ -1,13 +1,13 @@
 ﻿namespace Dnd.Dal.DbModels
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
     using Core.Model;
     using Core.Model.Character;
     using Core.Model.Character.Skills;
     using Core.Model.Classes;
     using Core.Model.Races;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
 
     public class DbCharacter : IEntity<int>
     {
@@ -32,6 +32,7 @@
 
         public ICharacter ToCharacter() {
             var character = CharacterCreator.CreateCharacter((Race)Race, (ClassType)Classes.First().Type, Classes.First().Level, Attributes.StartValues);
+            character.Name = Name;
             foreach (var charClass in Classes.Skip(1)) {
                 for (int i = 0; i < charClass.Level; i++) {
                     character.LevelUp((ClassType)charClass.Type);

@@ -36,7 +36,7 @@
         }
 
         public ActionResult Create() {
-            var maswari = VorniaCharacterCreator.CreateMaswari();
+            var maswari = VorniaCharacterCreator.CreateMaswariCommander();
             _repository.Add(maswari);
             return View();
         }
