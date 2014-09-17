@@ -21,12 +21,13 @@
             return 6 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
+        protected override void ClassModifyOnCreation(ICharacter subject) {
         }
 
-        public override void ModifyOnLevel(ICharacter subject) {
-            base.ModifyOnLevel(subject);
+        protected override void ClassModifyOnLevel(ICharacter subject) {
+        }
+
+        protected override void ClassModifyOnMultiClass(ICharacter subject) {
         }
     }
 }

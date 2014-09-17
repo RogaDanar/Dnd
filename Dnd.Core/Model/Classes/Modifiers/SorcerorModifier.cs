@@ -22,15 +22,15 @@
             return 2 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
-
+        protected override void ClassModifyOnCreation(ICharacter subject) {
             subject.Features.Add(Feature.SimpleWeaponProficiency);
             //subject.Features.Add("Summon Familiar");
         }
 
-        public override void ModifyOnLevel(ICharacter subject) {
-            base.ModifyOnLevel(subject);
+        protected override void ClassModifyOnLevel(ICharacter subject) {
+        }
+
+        protected override void ClassModifyOnMultiClass(ICharacter subject) {
         }
     }
 }

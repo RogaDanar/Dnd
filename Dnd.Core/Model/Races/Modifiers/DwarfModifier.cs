@@ -9,9 +9,7 @@
         public override Size Size { get { return Size.Medium; } }
         public override int Speed { get { return 20; } }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
-
+        protected override void ClassModifyOnCreation(ICharacter subject) {
             subject.Attributes.Increase(AttributeType.Constitution, 2);
             subject.Attributes.Decrease(AttributeType.Charisma, 2);
 
@@ -20,5 +18,7 @@
             subject.Features.Add(Feature.StoneCunning);
             subject.Features.Add(Feature.Stability);
         }
+
+        protected override void ClassModifyOnLevel(ICharacter subject) { }
     }
 }

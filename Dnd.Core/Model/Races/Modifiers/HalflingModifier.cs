@@ -11,9 +11,7 @@
         public override Size Size { get { return Size.Small; } }
         public override int Speed { get { return 20; } }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
-
+        protected override void ClassModifyOnCreation(ICharacter subject) {
             subject.Attributes.Increase(AttributeType.Dexterity, 2);
             subject.Attributes.Decrease(AttributeType.Strength, 2);
 
@@ -29,8 +27,6 @@
             subject.Saves.AddBonus(SaveType.Fortitude, 1);
         }
 
-        public override void ModifyOnLevel(ICharacter subject) {
-            base.ModifyOnLevel(subject);
-        }
+        protected override void ClassModifyOnLevel(ICharacter subject) { }
     }
 }

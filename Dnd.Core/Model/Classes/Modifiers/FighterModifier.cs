@@ -22,9 +22,7 @@
             return 2 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
-
+        protected override void ClassModifyOnCreation(ICharacter subject) {
             subject.Features.IncreaseFeatureCount(1);
             subject.Features.Add(Feature.SimpleWeaponProficiency);
             subject.Features.Add(Feature.MartialWeaponProficiency);
@@ -34,12 +32,13 @@
             subject.Features.Add(Feature.ShieldProficiency);
         }
 
-        public override void ModifyOnLevel(ICharacter subject) {
-            base.ModifyOnLevel(subject);
-
+        protected override void ClassModifyOnLevel(ICharacter subject) {
             if (subject.Experience.Level % 2 == 0) {
                 subject.Features.IncreaseFeatureCount(1);
             }
+        }
+
+        protected override void ClassModifyOnMultiClass(ICharacter subject) {
         }
     }
 }

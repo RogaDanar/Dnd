@@ -10,9 +10,7 @@
         public override Size Size { get { return Size.Small; } }
         public override int Speed { get { return 20; } }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
-
+        protected override void ClassModifyOnCreation(ICharacter subject) {
             subject.Attributes.Increase(AttributeType.Constitution, 2);
             subject.Attributes.Decrease(AttributeType.Strength, 2);
 
@@ -21,5 +19,7 @@
             subject.Skills.IncreaseBonus(SkillType.Listen, 2);
             subject.Skills.IncreaseBonus(SkillType.Craft, 2);
         }
+
+        protected override void ClassModifyOnLevel(ICharacter subject) { }
     }
 }

@@ -63,7 +63,7 @@
             Attributes = new AttributeList(abilityScores);
             var characterClass = ClassProvider.GetNewClass(classType, _modifierProvider);
             Classes.Add(classType, characterClass);
-            // Once all the proerties are set, OnCreation can be called, which will process all modifiers for this character/class/race
+            // Once all the properties are set, OnCreation can be called, which will process all modifiers for this character/class/race
             OnCreation(classType);
         }
 

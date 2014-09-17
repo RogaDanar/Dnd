@@ -21,19 +21,18 @@
             return 2 + subject.Intelligence.Modifier;
         }
 
-        public override void ModifyOnCreation(ICharacter subject) {
-            base.ModifyOnCreation(subject);
-
+        protected override void ClassModifyOnCreation(ICharacter subject) {
             //subject.Features.Add("Summon Familiar");
             //subject.Features.Add("Scribe Scroll");
         }
 
-        public override void ModifyOnLevel(ICharacter subject) {
-            base.ModifyOnLevel(subject);
-
+        protected override void ClassModifyOnLevel(ICharacter subject) {
             if (subject.Experience.Level % 5 == 0) {
                 subject.Features.IncreaseFeatureCount(1);
             }
+        }
+
+        protected override void ClassModifyOnMultiClass(ICharacter subject) {
         }
     }
 }
