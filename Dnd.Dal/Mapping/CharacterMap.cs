@@ -1,8 +1,8 @@
 ﻿namespace Dnd.Dal.Mapping
 {
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
     using DbModels;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class CharacterMap : EntityTypeConfiguration<DbCharacter>
     {

@@ -1,6 +1,7 @@
 ﻿namespace DnD.Arena
 {
     using Dnd.CharGenerator;
+    using Dnd.Core.Model;
     using Dnd.Core.Model.Actions;
     using Dnd.Core.Model.Character;
     using Dnd.Core.Model.Items.Armor;
@@ -28,7 +29,7 @@
             ConsoleSheet.Display(_player2);
             Console.ReadKey();
 
-            var arena = new Dnd.Core.Model.Arena(_player1, _player2);
+            var arena = new Arena(_player1, _player2);
             arena.AttackMade += ArenaAttackMade;
             arena.Attacked += ArenaAttacked;
             arena.FightDone += ArenaFightDone;

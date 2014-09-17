@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Core.Model.Character;
-    using Core.Services;
+    using Core.Repositories;
     using Dal.Repositories;
     using Mappers;
     using ViewModels;

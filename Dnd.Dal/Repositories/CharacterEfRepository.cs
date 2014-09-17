@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Linq.Expressions;
     using Core.Model.Character;
-    using Core.Services;
+    using Core.Repositories;
     using DbModels;
     using Extensions;
 

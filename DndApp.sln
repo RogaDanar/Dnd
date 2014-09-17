@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.UI", "Dnd.UI\Dnd.UI.csproj", "{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core", "Dnd.Core\Dnd.Core.csproj", "{ADB679A0-4036-4B81-957B-D3D9E6BC8766}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Tests", "Dnd.Tests\Dnd.Tests.csproj", "{F065AA59-9F18-4C8A-83AF-803A9E326C47}"
@@ -29,16 +27,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Debug|x86.ActiveCfg = Debug|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Debug|x86.Build.0 = Debug|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Release|Any CPU.ActiveCfg = Release|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Release|Mixed Platforms.Build.0 = Release|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Release|x86.ActiveCfg = Release|x86
-		{A2FE690A-22CD-488D-9AC5-DCC7C43D161F}.Release|x86.Build.0 = Release|x86
 		{ADB679A0-4036-4B81-957B-D3D9E6BC8766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ADB679A0-4036-4B81-957B-D3D9E6BC8766}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADB679A0-4036-4B81-957B-D3D9E6BC8766}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
