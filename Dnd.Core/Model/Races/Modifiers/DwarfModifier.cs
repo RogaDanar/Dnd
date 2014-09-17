@@ -4,7 +4,7 @@
     using Dnd.Core.Model.Character.Attributes;
     using Dnd.Core.Model.Character.Features;
 
-    public class DwarfModifier : AbstractRaceModifier
+    public class DwarfModifier : RaceModifierTemplate
     {
         public override Size Size { get { return Size.Medium; } }
         public override int Speed { get { return 20; } }

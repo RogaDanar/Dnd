@@ -63,6 +63,7 @@
     <Compile Include="Model\Character\Hitpoints.cs" />
     <Compile Include="Model\Character\ICharacter.cs" />
     <Compile Include="Model\Character\Modifiers\ICharacterModifier.cs" />
+    <Compile Include="Model\Character\Modifiers\IModifierProvider.cs" />
     <Compile Include="Model\Character\Saves\SavesList.cs" />
     <Compile Include="Model\Classes\CharacterClass.cs" />
     <Compile Include="Model\Classes\ClassProvider.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Model\Character\Skills\Skill.cs" />
     <Compile Include="Model\Character\Skills\SkillList.cs" />
     <Compile Include="Model\Character\Skills\SkillType.cs" />
+    <Compile Include="Model\Races\Modifiers\IRaceModifier.cs" />
     <Compile Include="Model\Races\Race.cs" />
     <Compile Include="Model\Character\Features\FeatureList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

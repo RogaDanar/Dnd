@@ -1,24 +1,24 @@
 ﻿namespace Dnd.Core.Model.Character.Modifiers
 {
-    using System;
     using Dnd.Core.Model.Classes;
     using Dnd.Core.Model.Classes.Modifiers;
     using Dnd.Core.Model.Races;
     using Dnd.Core.Model.Races.Modifiers;
+    using System;
 
-    public class ModifierProvider
+    public class ModifierProvider : IModifierProvider
     {
         /// <summary>
         /// Returns the base character modifier, which adds the base features and attributepoints for any character
         /// </summary>
-        public IModifier<ICharacter> GetBaseModifier() {
+        public ICharacterModifier GetBaseModifier() {
             return new CharacterModifier();
         }
 
         /// <summary>
         /// returns the Race modifier, which adjust race specific penalties and bonuses on a character
         /// </summary>
-        public IModifier<ICharacter> GetRaceModifier(Race race) {
+        public IRaceModifier GetRaceModifier(Race race) {
             switch (race) {
                 case Race.Elf:
                     return new ElfModifier();
@@ -42,7 +42,7 @@
         /// <summary>
         /// returns the Class modifier, which adjust class specific penalties and bonuses on a character
         /// </summary>
-        public AbstractClassModifier GetClassModifier(ClassType classType) {
+        public IClassModifier GetClassModifier(ClassType classType) {
             switch (classType) {
                 case ClassType.Barbarian:
                     return new BarbarianModifier();

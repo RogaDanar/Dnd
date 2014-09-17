@@ -5,20 +5,21 @@
     using Dnd.Core.Model.Character.Features;
     using Dnd.Core.Model.Character.Saves;
 
-    public class PaladinModifier : AbstractClassModifier
+    public class PaladinModifier : ClassModifierTemplate
     {
         public override ClassType ClassType { get { return ClassType.Paladin; } }
-
-        public override int HitDie { get { return 10; } }
         public override SaveBonusType FortitudeSaveType { get { return SaveBonusType.Good; } }
         public override SaveBonusType ReflexSaveType { get { return SaveBonusType.Poor; } }
         public override SaveBonusType WillSaveType { get { return SaveBonusType.Poor; } }
         public override AttackBonusType AttackBonusType { get { return AttackBonusType.Good; } }
 
-        public override int GetSkillPointsCreation(ICharacter subject) {
+        protected override int HitDie { get { return 10; } }
+
+        protected override int GetSkillPointsCreation(ICharacter subject) {
             return (2 + subject.Intelligence.Modifier) * 4;
         }
-        public override int GetSkillPointsLevel(ICharacter subject) {
+
+        protected override int GetSkillPointsLevel(ICharacter subject) {
             return 2 + subject.Intelligence.Modifier;
         }
 

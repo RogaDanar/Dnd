@@ -2,7 +2,7 @@
 {
     using Dnd.Core.Model.Character;
 
-    public class HumanModifier : AbstractRaceModifier
+    public class HumanModifier : RaceModifierTemplate
     {
         public override Size Size { get { return Size.Medium; } }
         public override int Speed { get { return 30; } }

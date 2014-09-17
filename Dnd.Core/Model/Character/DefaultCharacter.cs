@@ -15,7 +15,7 @@
 
     public class DefaultCharacter : ICharacter
     {
-        private readonly ModifierProvider _modifierProvider;
+        private readonly IModifierProvider _modifierProvider;
 
         public int Id { get; set; }
 
@@ -56,7 +56,7 @@
 
         }
 
-        public DefaultCharacter(ClassType classType, Race race, Dictionary<AttributeType, int> abilityScores, ModifierProvider modifierProvider) {
+        public DefaultCharacter(ClassType classType, Race race, Dictionary<AttributeType, int> abilityScores, IModifierProvider modifierProvider) {
             _modifierProvider = modifierProvider;
             Race = race;
             InitializeProperties();

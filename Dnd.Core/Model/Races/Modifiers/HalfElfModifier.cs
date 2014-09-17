@@ -4,7 +4,7 @@
     using Dnd.Core.Model.Character.Features;
     using Dnd.Core.Model.Character.Skills;
 
-    public class HalfElfModifier : AbstractRaceModifier
+    public class HalfElfModifier : RaceModifierTemplate
     {
         public override Size Size { get { return Size.Medium; } }
         public override int Speed { get { return 30; } }

@@ -6,7 +6,7 @@
     /// <summary>
     /// Template Method for race modifiers
     /// </summary>
-    public abstract class AbstractRaceModifier : IModifier<ICharacter>
+    public abstract class RaceModifierTemplate : IRaceModifier
     {
         public abstract Size Size { get; }
         public abstract int Speed { get; }

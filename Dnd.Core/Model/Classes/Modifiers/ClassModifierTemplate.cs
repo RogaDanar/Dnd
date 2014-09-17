@@ -7,17 +7,17 @@
     /// <summary>
     /// Template Method for class modifiers
     /// </summary>
-    public abstract class AbstractClassModifier : IClassModifier
+    public abstract class ClassModifierTemplate : IClassModifier
     {
         public abstract ClassType ClassType { get; }
-
-        public abstract int HitDie { get; }
         public abstract SaveBonusType FortitudeSaveType { get; }
         public abstract SaveBonusType ReflexSaveType { get; }
         public abstract SaveBonusType WillSaveType { get; }
         public abstract AttackBonusType AttackBonusType { get; }
-        public abstract int GetSkillPointsCreation(ICharacter subject);
-        public abstract int GetSkillPointsLevel(ICharacter subject);
+
+        protected abstract int HitDie { get; }
+        protected abstract int GetSkillPointsCreation(ICharacter subject);
+        protected abstract int GetSkillPointsLevel(ICharacter subject);
 
         protected abstract void ClassModifyOnCreation(ICharacter subject);
         protected abstract void ClassModifyOnLevel(ICharacter subject);

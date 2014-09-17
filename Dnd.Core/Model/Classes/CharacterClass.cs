@@ -26,7 +26,7 @@
         public Save ReflexSave { get { return Saves.ReflexSave; } }
         public Save WillSave { get { return Saves.WillSave; } }
 
-        public CharacterClass(ClassType classType, int level, AbstractClassModifier modifier) {
+        public CharacterClass(ClassType classType, int level, IClassModifier modifier) {
             ClassType = classType;
             Level = level;
             Modifier = modifier;

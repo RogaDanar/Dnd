@@ -6,7 +6,7 @@
     using Dnd.Core.Model.Character.Saves;
     using Dnd.Core.Model.Character.Skills;
 
-    public class HalflingModifier : AbstractRaceModifier
+    public class HalflingModifier : RaceModifierTemplate
     {
         public override Size Size { get { return Size.Small; } }
         public override int Speed { get { return 20; } }

@@ -5,7 +5,7 @@
     using Dnd.Core.Model.Character.Features;
     using Dnd.Core.Model.Character.Skills;
 
-    public class GnomeModifier : AbstractRaceModifier
+    public class GnomeModifier : RaceModifierTemplate
     {
         public override Size Size { get { return Size.Small; } }
         public override int Speed { get { return 20; } }
