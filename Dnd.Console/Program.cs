@@ -10,7 +10,7 @@
 
     class Program
     {
-        private const string USAGE = "Usage [optional]: Dnd.Console <Race> <Class> <Level> [str dex con int wis cha]";
+        private const string USAGE = @"Usage [optional]: Dnd.Console <Race> <Class> <Level> [str dex con int wis cha]";
 
         static int Main(string[] args) {
             // At least Race, level and class need to be provided
@@ -27,10 +27,10 @@
                 return 1;
             }
 
-            var race = GetRace(args);
-            var classType = GetClass(args);
-            var level = GetLevel(args);
-            var abilityScores = GetAbilityScores(args);
+            var race = GetRace(args[0]);
+            var classType = GetClass(args[1]);
+            var level = GetLevel(args[2]);
+            var abilityScores = GetAbilityScores(args.Skip(3));
 
             // If either one of these is 0, it means the creation has failed, quit
             if (race == 0 || classType == 0 || level == 0) {
@@ -51,14 +51,14 @@
         /// Gets the ability scores from the program argumentlist by index. If the element is missing 
         /// a default value is used
         /// </summary>
-        private static Dictionary<AttributeType, int> GetAbilityScores(string[] args) {
+        private static Dictionary<AttributeType, int> GetAbilityScores(IEnumerable<string> abilities) {
             const string defaultScore = "11";
-            var str = Int32.Parse(args.ElementAtOrDefault(3) ?? defaultScore);
-            var dex = Int32.Parse(args.ElementAtOrDefault(4) ?? defaultScore);
-            var con = Int32.Parse(args.ElementAtOrDefault(5) ?? defaultScore);
-            var intel = Int32.Parse(args.ElementAtOrDefault(6) ?? defaultScore);
-            var wis = Int32.Parse(args.ElementAtOrDefault(7) ?? defaultScore);
-            var cha = Int32.Parse(args.ElementAtOrDefault(8) ?? defaultScore);
+            var str = Int32.Parse(abilities.ElementAtOrDefault(0) ?? defaultScore);
+            var dex = Int32.Parse(abilities.ElementAtOrDefault(1) ?? defaultScore);
+            var con = Int32.Parse(abilities.ElementAtOrDefault(2) ?? defaultScore);
+            var intel = Int32.Parse(abilities.ElementAtOrDefault(3) ?? defaultScore);
+            var wis = Int32.Parse(abilities.ElementAtOrDefault(4) ?? defaultScore);
+            var cha = Int32.Parse(abilities.ElementAtOrDefault(5) ?? defaultScore);
 
             var abilityScores = new Dictionary<AttributeType, int>() { 
                 {AttributeType.Strength, str},
@@ -74,11 +74,11 @@
         /// <summary>
         /// Gets the race from the program argument list and writes an error to the console if unsuccesful
         /// </summary>
-        private static Race GetRace(string[] args) {
+        private static Race GetRace(string raceName) {
             Race race;
-            if (!Enum.TryParse<Race>(args[0], true, out race)) {
+            if (!Enum.TryParse<Race>(raceName, true, out race)) {
                 Console.WriteLine(USAGE);
-                Console.WriteLine("{0} is not a valid race", args[0]);
+                Console.WriteLine("{0} is not a valid race", raceName);
             }
             return race;
         }
@@ -86,11 +86,11 @@
         /// <summary>
         /// Gets the class from the program argument list and writes an error to the console if unsuccesful
         /// </summary>
-        private static ClassType GetClass(string[] args) {
+        private static ClassType GetClass(string className) {
             ClassType charClass;
-            if (!Enum.TryParse<ClassType>(args[1], true, out charClass)) {
+            if (!Enum.TryParse<ClassType>(className, true, out charClass)) {
                 Console.WriteLine(USAGE);
-                Console.WriteLine("{0} is not a valid class", args[1]);
+                Console.WriteLine("{0} is not a valid class", className);
             }
             return charClass;
         }
@@ -98,11 +98,11 @@
         /// <summary>
         /// Gets the level from the program argument list and writes an error to the console if unsuccesful
         /// </summary>
-        private static int GetLevel(string[] args) {
+        private static int GetLevel(string levelName) {
             int level;
-            if (!Int32.TryParse(args[2], out level)) {
+            if (!Int32.TryParse(levelName, out level)) {
                 Console.WriteLine(USAGE);
-                Console.WriteLine("{0} is not a valid level", args[2]);
+                Console.WriteLine("{0} is not a valid level", levelName);
             }
             return level;
         }

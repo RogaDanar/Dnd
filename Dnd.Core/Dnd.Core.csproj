@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Model\Actions\ActionResult.cs" />
     <Compile Include="Model\Actions\Attacks\AttackCalculator.cs" />
     <Compile Include="Model\Actions\Attacks\MeleeAttack.cs" />
@@ -99,9 +100,9 @@
     <Compile Include="Model\Items\Weapons\AbstractWeapon.cs" />
     <Compile Include="Model\Items\Weapons\Greatsword.cs" />
     <Compile Include="Model\Items\Weapons\Longsword.cs" />
-    <Compile Include="Model\Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Model\Items\Weapons\IWeapon.cs" />
-    <Compile Include="Model\Classes\Modifiers\AbstractClassModifier.cs" />
+    <Compile Include="Model\Classes\Modifiers\ClassModifierTemplate.cs" />
     <Compile Include="Model\Classes\Modifiers\ClericModifier.cs" />
     <Compile Include="Model\Classes\Modifiers\WizardModifier.cs" />
     <Compile Include="Model\Classes\Modifiers\SorcerorModifier.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Model\Classes\Modifiers\IClassModifier.cs" />
     <Compile Include="Model\Items\Weapons\WeaponDiceTable.cs" />
     <Compile Include="Model\Items\Weapons\WeaponClass.cs" />
-    <Compile Include="Model\Races\Modifiers\AbstractRaceModifier.cs" />
+    <Compile Include="Model\Races\Modifiers\RaceModifierTemplate.cs" />
     <Compile Include="Model\Races\Modifiers\HalflingModifier.cs" />
     <Compile Include="Model\Races\Modifiers\HalfOrcModifier.cs" />
     <Compile Include="Model\Races\Modifiers\HalfElfModifier.cs" />

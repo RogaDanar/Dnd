@@ -5,7 +5,7 @@ namespace Dnd.Core.Model.Character.Skills
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Dnd.Core.Model.Extensions;
+    using Dnd.Core.Extensions;
 
     public class SkillList : IEnumerable<KeyValuePair<SkillType, int>>
     {

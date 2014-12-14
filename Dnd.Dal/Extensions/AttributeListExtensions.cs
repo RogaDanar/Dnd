@@ -1,7 +1,7 @@
 ﻿namespace Dnd.Dal.Extensions
 {
-    using Core.Model.Character.Attributes;
-    using DbModels;
+    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Dal.DbModels;
 
     public static class AttributeListExtensions
     {
@@ -10,19 +10,19 @@
 
             //dbAttributes.Character = dbCharacter;
 
-            dbAttributes.StartStrength = attributes.StartAttributes[AttributeType.Strength];
-            dbAttributes.StartDexterity = attributes.StartAttributes[AttributeType.Dexterity];
-            dbAttributes.StartConstitution = attributes.StartAttributes[AttributeType.Constitution];
-            dbAttributes.StartIntelligence = attributes.StartAttributes[AttributeType.Intelligence];
-            dbAttributes.StartWisdom = attributes.StartAttributes[AttributeType.Wisdom];
-            dbAttributes.StartCharisma = attributes.StartAttributes[AttributeType.Charisma];
+            dbAttributes.StartStrength = attributes.StartAttributeScores[AttributeType.Strength];
+            dbAttributes.StartDexterity = attributes.StartAttributeScores[AttributeType.Dexterity];
+            dbAttributes.StartConstitution = attributes.StartAttributeScores[AttributeType.Constitution];
+            dbAttributes.StartIntelligence = attributes.StartAttributeScores[AttributeType.Intelligence];
+            dbAttributes.StartWisdom = attributes.StartAttributeScores[AttributeType.Wisdom];
+            dbAttributes.StartCharisma = attributes.StartAttributeScores[AttributeType.Charisma];
 
-            dbAttributes.ModStrength = attributes.ModAttributes[AttributeType.Strength];
-            dbAttributes.ModDexterity = attributes.ModAttributes[AttributeType.Dexterity];
-            dbAttributes.ModConstitution = attributes.ModAttributes[AttributeType.Constitution];
-            dbAttributes.ModIntelligence = attributes.ModAttributes[AttributeType.Intelligence];
-            dbAttributes.ModWisdom = attributes.ModAttributes[AttributeType.Wisdom];
-            dbAttributes.ModCharisma = attributes.ModAttributes[AttributeType.Charisma];
+            dbAttributes.ModStrength = attributes.AddedAttributeScores[AttributeType.Strength];
+            dbAttributes.ModDexterity = attributes.AddedAttributeScores[AttributeType.Dexterity];
+            dbAttributes.ModConstitution = attributes.AddedAttributeScores[AttributeType.Constitution];
+            dbAttributes.ModIntelligence = attributes.AddedAttributeScores[AttributeType.Intelligence];
+            dbAttributes.ModWisdom = attributes.AddedAttributeScores[AttributeType.Wisdom];
+            dbAttributes.ModCharisma = attributes.AddedAttributeScores[AttributeType.Charisma];
 
             return dbAttributes;
         }

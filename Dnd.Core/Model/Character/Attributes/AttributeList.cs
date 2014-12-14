@@ -1,112 +1,140 @@
-﻿
-
-namespace Dnd.Core.Model.Character.Attributes
+﻿namespace Dnd.Core.Model.Character.Attributes
 {
+    using Dnd.Core.Extensions;
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     public class AttributeList : IEnumerable<ReadOnlyAttribute>
     {
-        public int UnusedPoints { get; private set; }
-
-        public Dictionary<AttributeType, int> StartAttributes { get; private set; }
-        public Dictionary<AttributeType, int> ModAttributes { get; private set; }
-
-        public ReadOnlyAttribute Strength { get { return _strength; } }
-        public ReadOnlyAttribute Dexterity { get { return _dexterity; } }
-        public ReadOnlyAttribute Constitution { get { return _constitution; } }
-        public ReadOnlyAttribute Intelligence { get { return _intelligence; } }
-        public ReadOnlyAttribute Wisdom { get { return _wisdom; } }
-        public ReadOnlyAttribute Charisma { get { return _constitution; } }
-
-        private Attribute _strength;
-        private Attribute _dexterity;
-        private Attribute _constitution;
-        private Attribute _intelligence;
-        private Attribute _wisdom;
-        private Attribute _charisma;
-
-        private List<Attribute> _list;
+        private const int _defaultScore = 10;
         private bool _creating;
 
-        public AttributeList(Dictionary<AttributeType, int> attributeScores) {
-            _creating = true;
-            Initialize(attributeScores);
-        }
+        private readonly List<Attribute> _attributes = new List<Attribute>();
+        private readonly Attribute _strength;
+        private readonly Attribute _dexterity;
+        private readonly Attribute _constitution;
+        private readonly Attribute _intelligence;
+        private readonly Attribute _wisdom;
+        private readonly Attribute _charisma;
 
-        private void Initialize(Dictionary<AttributeType, int> attributeScores) {
-            StartAttributes = attributeScores;
-            var str = attributeScores.ContainsKey(AttributeType.Strength) ? attributeScores[AttributeType.Strength] : 10;
-            var dex = attributeScores.ContainsKey(AttributeType.Dexterity) ? attributeScores[AttributeType.Dexterity] : 10;
-            var con = attributeScores.ContainsKey(AttributeType.Constitution) ? attributeScores[AttributeType.Constitution] : 10;
-            var intel = attributeScores.ContainsKey(AttributeType.Intelligence) ? attributeScores[AttributeType.Intelligence] : 10;
-            var wis = attributeScores.ContainsKey(AttributeType.Wisdom) ? attributeScores[AttributeType.Wisdom] : 10;
-            var cha = attributeScores.ContainsKey(AttributeType.Charisma) ? attributeScores[AttributeType.Charisma] : 10;
-            _strength = new Attribute(AttributeType.Strength, str);
-            _dexterity = new Attribute(AttributeType.Dexterity, dex);
-            _constitution = new Attribute(AttributeType.Constitution, con);
-            _intelligence = new Attribute(AttributeType.Intelligence, intel);
-            _wisdom = new Attribute(AttributeType.Wisdom, wis);
-            _charisma = new Attribute(AttributeType.Charisma, cha);
-            _list = new List<Attribute>
-                {
-                    _strength,
-                    _dexterity,
-                    _constitution,
-                    _intelligence,
-                    _wisdom,
-                    _charisma
-                };
-            ModAttributes = new Dictionary<AttributeType, int>
-                {
-                    {AttributeType.Strength, 0},
-                    {AttributeType.Dexterity , 0},
-                    {AttributeType.Constitution , 0},
-                    {AttributeType.Intelligence , 0},
-                    {AttributeType.Wisdom , 0},
-                    {AttributeType.Charisma , 0}
-                };
-        }
+        /// <summary>
+        /// Attribute points still available
+        /// </summary>
+        public int UnusedPoints { get; private set; }
 
-        private void UsePoint() {
-            if (UnusedPoints > 0 && !_creating) {
-                UnusedPoints--;
+        /// <summary>
+        /// The attribute scores with which the character was originally created. This score
+        /// in combination with the added scores (through levelling for instance) results in the current value;
+        /// </summary>
+        public IReadOnlyDictionary<AttributeType, int> StartAttributeScores { get; private set; }
+
+        /// <summary>
+        /// Added scores since the original creation. These scores added to the starting scores result in the
+        /// current base values.
+        /// </summary>
+        public IReadOnlyDictionary<AttributeType, int> AddedAttributeScores {
+            get {
+                return new ReadOnlyDictionary<AttributeType, int>(
+                    _attributes.ToDictionary(x => x.Type, y => y.BaseScore - StartAttributeScores[y.Type]));
             }
         }
 
-        public void AddPoints(int amount) {
-            UnusedPoints += amount;
-        }
+        public ReadOnlyAttribute Strength { get { return new ReadOnlyAttribute(_strength); } }
+        public ReadOnlyAttribute Dexterity { get { return new ReadOnlyAttribute(_dexterity); } }
+        public ReadOnlyAttribute Constitution { get { return new ReadOnlyAttribute(_constitution); } }
+        public ReadOnlyAttribute Intelligence { get { return new ReadOnlyAttribute(_intelligence); } }
+        public ReadOnlyAttribute Wisdom { get { return new ReadOnlyAttribute(_wisdom); } }
+        public ReadOnlyAttribute Charisma { get { return new ReadOnlyAttribute(_constitution); } }
 
         public ReadOnlyAttribute this[AttributeType type] {
             get {
-                return _list.Single(x => x.Type == type);
+                return new ReadOnlyAttribute(_attributes.Single(x => x.Type == type));
             }
         }
 
+        /// <summary>
+        /// Calling this constructor will set this class to a creation state. To finish the creation
+        /// the <see cref="DoneCreating"/> method needs to be called
+        /// </summary>
+        /// <param name="attributeScores">Any type that isn;t in the dictionary will be set to a default score.</param>
+        public AttributeList(Dictionary<AttributeType, int> attributeScores) {
+            _creating = true;
+            StartAttributeScores = new ReadOnlyDictionary<AttributeType, int>(attributeScores);
+
+            var str = attributeScores.GetValueOrDefault(AttributeType.Strength, _defaultScore);
+            var dex = attributeScores.GetValueOrDefault(AttributeType.Dexterity, _defaultScore);
+            var con = attributeScores.GetValueOrDefault(AttributeType.Constitution, _defaultScore);
+            var @int = attributeScores.GetValueOrDefault(AttributeType.Intelligence, _defaultScore);
+            var wis = attributeScores.GetValueOrDefault(AttributeType.Wisdom, _defaultScore);
+            var cha = attributeScores.GetValueOrDefault(AttributeType.Charisma, _defaultScore);
+
+            _strength = new Attribute(AttributeType.Strength, str);
+            _dexterity = new Attribute(AttributeType.Dexterity, dex);
+            _constitution = new Attribute(AttributeType.Constitution, con);
+            _intelligence = new Attribute(AttributeType.Intelligence, @int);
+            _wisdom = new Attribute(AttributeType.Wisdom, wis);
+            _charisma = new Attribute(AttributeType.Charisma, cha);
+
+            _attributes.AddRange(new[] { _strength, _dexterity, _constitution, _intelligence, _wisdom, _charisma });
+        }
+
+        /// <summary>
+        /// Add points which can be used to increase attributes.
+        /// </summary>
+        /// <param name="amount">A positive value to add. A negative value will throw an exception</param>
+        public void AddPoints(int amount) {
+            if (amount < 0) {
+                throw new ArgumentException("Must be positive, point can onyl be added.", "amount");
+            }
+            UnusedPoints += amount;
+        }
+
+        /// <summary>
+        /// Increase the given attribute with the given amount, as long as there are Unused points available or
+        /// we still are in the creation phase.
+        /// </summary>
+        /// <param name="attr">Specifies the attribute to increase</param>
+        /// <param name="points">A positive value. Providing a negative value has no effect</param>
         public void Increase(AttributeType attr, int points) {
             while (points > 0) {
                 if (_creating || UnusedPoints > 0) {
-                    _list.Single(x => x.Type == attr).Increase(1);
-                    ModAttributes[attr]++;
-                    UsePoint();
+                    _attributes.Single(x => x.Type == attr).Increase(1);
+                    usePoint();
                 }
                 points--;
             }
         }
 
+        /// <summary>
+        /// Increase the given attribute with the given amount.
+        /// </summary>
+        /// <param name="attr">Specifies the attribute to increase</param>
+        /// <param name="points">A positive value. Providing a negative value will throw an exception</param>
         public void Decrease(AttributeType attr, int points) {
-            _list.Single(x => x.Type == attr).Decrease(points);
-            ModAttributes[attr]--;
+            if (points < 0) {
+                throw new ArgumentException("Must be positive, point can onyl be added.", "points");
+            }
+            _attributes.Single(x => x.Type == attr).Decrease(points);
         }
 
+        /// <summary>
+        /// Will change the state of this object, so modifications are restricted.
+        /// </summary>
         public void DoneCreating() {
             _creating = false;
         }
 
+        private void usePoint() {
+            if (UnusedPoints > 0 && !_creating) {
+                UnusedPoints--;
+            }
+        }
+
         public IEnumerator<ReadOnlyAttribute> GetEnumerator() {
-            return _list.GetEnumerator();
+            return _attributes.Select(x => new ReadOnlyAttribute(x)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

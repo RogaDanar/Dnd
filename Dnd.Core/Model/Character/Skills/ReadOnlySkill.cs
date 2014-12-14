@@ -1,9 +1,9 @@
 ﻿namespace Dnd.Core.Model.Character.Skills
 {
+    using Dnd.Core.Extensions;
+    using Dnd.Core.Model.Character.Attributes;
     using System.Collections.Generic;
     using System.Linq;
-    using Dnd.Core.Model.Character.Attributes;
-    using Dnd.Core.Model.Extensions;
 
     public class ReadOnlySkill
     {

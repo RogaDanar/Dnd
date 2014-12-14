@@ -1,4 +1,4 @@
-﻿namespace Dnd.Core.Model.Extensions
+﻿namespace Dnd.Core.Extensions
 {
     using System;
     using System.Linq;

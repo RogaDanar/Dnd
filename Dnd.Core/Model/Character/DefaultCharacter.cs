@@ -1,7 +1,5 @@
 ﻿namespace Dnd.Core.Model.Character
 {
-    using System;
-    using System.Collections.Generic;
     using Dnd.Core.Model.Character.Attacks;
     using Dnd.Core.Model.Character.Attributes;
     using Dnd.Core.Model.Character.Features;
@@ -12,6 +10,8 @@
     using Dnd.Core.Model.Classes.Modifiers;
     using Dnd.Core.Model.Items;
     using Dnd.Core.Model.Races;
+    using System;
+    using System.Collections.Generic;
 
     public class DefaultCharacter : ICharacter
     {
@@ -52,12 +52,15 @@
 
         // TODO: Spells
 
-        protected DefaultCharacter() {
+        private DefaultCharacter() { }
 
+        protected DefaultCharacter(IModifierProvider modifierProvider) {
+
+            _modifierProvider = modifierProvider;
         }
 
-        public DefaultCharacter(ClassType classType, Race race, Dictionary<AttributeType, int> abilityScores, IModifierProvider modifierProvider) {
-            _modifierProvider = modifierProvider;
+        public DefaultCharacter(ClassType classType, Race race, Dictionary<AttributeType, int> abilityScores, IModifierProvider modifierProvider)
+            : this(modifierProvider) {
             Race = race;
             InitializeProperties();
             Attributes = new AttributeList(abilityScores);

@@ -12,12 +12,16 @@
         /// Creates a new character and levels it up to the given level
         /// </summary>
         public static ICharacter CreateCharacter(Race race, ClassType classType, int level, Dictionary<AttributeType, int> attributeScores) {
-            var character = new DefaultCharacter(classType, race, attributeScores, new ModifierProvider());
+            var character = CreateCharacter(race, classType, attributeScores);
             character.Experience.AddLevels(level);
             while (character.Experience.CanLevel) {
                 character.LevelUp(classType);
             }
             return character;
+        }
+
+        public static ICharacter CreateCharacter(Race race, ClassType classType, Dictionary<AttributeType, int> attributeScores) {
+            return new DefaultCharacter(classType, race, attributeScores, new ModifierProvider());
         }
     }
 }

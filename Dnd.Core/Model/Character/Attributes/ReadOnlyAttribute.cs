@@ -2,29 +2,25 @@
 {
     using System;
 
+    /// <summary>
+    /// Wrapper for the <see cref="Attribute"/> class to make it read only.
+    /// Prevent any modification by making it impossible to cast it back to an Attribute 
+    /// </summary>
     public class ReadOnlyAttribute
     {
-        public AttributeType Type { get; protected set; }
-        public int Score { get { return BaseScore + BonusScore; } }
-        public int BaseScore { get; protected set; }
-        public int BonusScore { get; protected set; }
+        private readonly Attribute _attribute;
 
-        public int Modifier
-        {
-            get
-            {
-                if (Score <= 0)
-                {
-                    throw new ArgumentException("Score can not be 0, it would mean death", "Score");
-                }
-                return (Score - 10) / 2;
+        public AttributeType Type { get { return _attribute.Type; } }
+        public int Score { get { return _attribute.Score; } }
+        public int BaseScore { get { return _attribute.BaseScore; } }
+        public int BonusScore { get { return _attribute.BonusScore; } }
+        public int Modifier { get { return _attribute.Modifier; } }
+
+        public ReadOnlyAttribute(Attribute attribute) {
+            if (attribute == null) {
+                throw new ArgumentNullException("attribute", "ReadOnlyAttribute requires a normal attribute");
             }
-        }
-
-        public ReadOnlyAttribute(AttributeType attributeType, int? baseScore = null, int bonusScore = 0) {
-            Type = attributeType;
-            BaseScore = baseScore ?? 10;
-            BonusScore = bonusScore;
+            _attribute = attribute;
         }
 
         public static implicit operator int(ReadOnlyAttribute attr) {
