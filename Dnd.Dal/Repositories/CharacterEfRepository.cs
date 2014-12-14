@@ -17,7 +17,7 @@
         private IDbSet<DbCharacter> _characters { get { return _context.Set<DbCharacter>(); } }
 
         public CharacterEfRepository(IDbContext context = null) {
-            _context = context ?? new DataContext();
+            _context = context ?? new DndContext();
         }
 
         public ICharacter Add(ICharacter entity) {

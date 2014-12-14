@@ -4,7 +4,7 @@
     using Core.Model;
     using Mapping;
 
-    public class DataContext : DbContext, IDbContext
+    public class DndContext : DbContext, IDbContext
     {
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class, IEntity<int> {
             return base.Set<TEntity>();

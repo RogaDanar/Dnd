@@ -2,13 +2,13 @@ namespace Dnd.Dal.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Dnd.Dal.DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Dnd.Dal.DndContext>
     {
         public Configuration() {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Dnd.Dal.DataContext context) {
+        protected override void Seed(Dnd.Dal.DndContext context) {
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
