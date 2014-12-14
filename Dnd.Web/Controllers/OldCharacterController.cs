@@ -7,27 +7,26 @@
     using Dal.Repositories;
     using Mappers;
     using ViewModels;
-    using Vornia.Character;
+    using Dnd.Vornia.Character;
 
-    public class CharacterController : Controller
+    public class OldCharacterController : Controller
     {
         private ICharacterRepository _repository;
 
         private IMapper<ICharacter, CharacterViewModel> _mapper;
 
-        public CharacterController()
+        public OldCharacterController()
             : this(default(ICharacterRepository), default(IMapper<ICharacter, CharacterViewModel>)) {
         }
 
-        public CharacterController(ICharacterRepository repository, IMapper<ICharacter, CharacterViewModel> mapper) {
+        public OldCharacterController(ICharacterRepository repository, IMapper<ICharacter, CharacterViewModel> mapper) {
             _repository = repository ?? new CharacterEfRepository();
             _mapper = mapper ?? new CharacterMapper();
         }
 
         public ActionResult Index() {
             var allCharacters = _repository.GetAll().ToList();
-            var viewModel = new CharacterIndexViewModel();
-            viewModel.Characters = _mapper.Map(allCharacters);
+            var viewModel = _mapper.Map(allCharacters);
             return View(viewModel);
         }
 

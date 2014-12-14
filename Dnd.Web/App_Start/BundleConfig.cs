@@ -1,29 +1,36 @@
-﻿namespace Dnd.Web
-{
-    using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
+namespace Dnd.Web
+{
     public class BundleConfig
     {
-        // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
+        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles) {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
+                "~/Scripts/jquery.unobtrusive*",
+                "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                "~/Scripts/knockout-{version}.js",
+                "~/Scripts/knockout.validation.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app/common.js",
+                "~/Scripts/app/app.datamodel.js",
+                "~/Scripts/app/app.viewmodel.js",
+                "~/Scripts/app/home.viewmodel.js",
+                "~/Scripts/app/_run.js"));
 
-            // Add @Styles.Render("~/Content/bootstrap") in the <head/> of your _Layout.cshtml view
-            // For Bootstrap theme add @Styles.Render("~/Content/bootstrap-theme") in the <head/> of your _Layout.cshtml view
-            // Add @Scripts.Render("~/bundles/bootstrap") after jQuery in your _Layout.cshtml view
-            // When <compilation debug="true" />, MVC4 will render the full readable version. When set to <compilation debug="false" />, the minified version will be rendered automatically
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
-            bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/bootstrap.css"));
-            bundles.Add(new StyleBundle("~/Content/bootstrap-theme").Include("~/Content/bootstrap-theme.css"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/respond.js"));
 
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                 "~/Content/bootstrap.css",
+                 "~/Content/Site.css"));
         }
     }
 }

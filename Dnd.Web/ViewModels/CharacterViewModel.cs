@@ -1,7 +1,8 @@
 ﻿namespace Dnd.Web.ViewModels
 {
-    using Core.Model.Character;
-    using Core.Model.Races;
+    using Dnd.Core.Model.Character;
+    using Dnd.Core.Model.Races;
+    using Dnd.Core.Model.Character.Abilities;
 
     public class CharacterViewModel
     {
@@ -14,7 +15,7 @@
         public int ExperienceCurrent { get; set; }
         public int ExperienceLevel { get; set; }
 
-        //public AttributeList Attributes { get; set; }
+        public CharacterAbilities Abilities { get; set; }
         //public SavesList Saves { get; set; }
         //public AttackList Attacks { get; set; }
         //public FeatureList Features { get; set; }
