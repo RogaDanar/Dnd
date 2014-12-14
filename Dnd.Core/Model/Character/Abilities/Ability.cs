@@ -69,12 +69,11 @@
         /// </summary>
         /// <param name="value">A positive value. Negative will throw an exception</param>
         /// <returns>Boolean Indicating if the resultant score is positive. Negative score probably means a character is dead.</returns>
-        public bool Decrease(int value) {
+        public void Decrease(int value) {
             if (value < 0) {
                 throw new ArgumentException("Must be positive. Use Increase if you want to heighten the score", "value");
             }
             BaseScore -= value;
-            return Score > 0;
         }
 
         /// <summary>
@@ -82,9 +81,8 @@
         /// </summary>
         /// <param name="value">Positive or negative bonus from an external source.</param>
         /// <returns>Boolean Indicating if the resultant score is positive. Negative score probably means a character is dead.</returns>
-        public bool AdjustBonus(int value) {
+        public void AdjustBonus(int value) {
             BonusScore += value;
-            return Score > 0; // a value of 0 or lower should have consequences
         }
 
         public static implicit operator int(Ability ability) {

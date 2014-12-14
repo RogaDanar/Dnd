@@ -54,7 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Abilities\AbilityTests.cs" />
+    <Compile Include="Model\Character\Abilities\AbilityScoresTests.cs" />
+    <Compile Include="Model\Character\Abilities\AbilityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

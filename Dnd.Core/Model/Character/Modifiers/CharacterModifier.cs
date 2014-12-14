@@ -11,7 +11,7 @@
 
         public void ModifyOnLevel(ICharacter subject) {
             if (subject.Experience.Level % 4 == 0) {
-                subject.Abilities.AddPoints(1);
+                subject.AddAbilityPoints(1);
             }
             if (subject.Experience.Level % 3 == 0) {
                 subject.Features.IncreaseFeatureCount(1);

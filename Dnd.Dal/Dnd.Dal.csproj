@@ -59,7 +59,6 @@
     <Compile Include="DbModels\DbCharacterClass.cs" />
     <Compile Include="DbModels\DbCharacterSkill.cs" />
     <Compile Include="DbModels\DbCharacterFeature.cs" />
-    <Compile Include="Extensions\AbilityListExtensions.cs" />
     <Compile Include="Extensions\SkillExtensions.cs" />
     <Compile Include="Extensions\IFeatureExtensions.cs" />
     <Compile Include="Extensions\ICharacterExtentions.cs" />

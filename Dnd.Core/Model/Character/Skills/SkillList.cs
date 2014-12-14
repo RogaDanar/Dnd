@@ -67,7 +67,7 @@ namespace Dnd.Core.Model.Character.Skills
         }
 
         private int GetScore(Skill skill) {
-            var score = skill.Ranks + skill.MiscModifier + _character.Abilities[skill.AbilityModifierType].Modifier;
+            var score = skill.Ranks + skill.MiscModifier + _character.AbilityScores[skill.AbilityModifierType].Modifier;
             foreach (var synergyFromSkill in skill.SynergyFromSkills) {
                 if (this[synergyFromSkill] >= 5) {
                     score += 2;

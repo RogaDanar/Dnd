@@ -135,7 +135,7 @@
     <Compile Include="Model\Races\Modifiers\ElfModifier.cs" />
     <Compile Include="Model\Character\Modifiers\IModifier.cs" />
     <Compile Include="Model\Character\Abilities\Ability.cs" />
-    <Compile Include="Model\Character\Abilities\AbilityList.cs" />
+    <Compile Include="Model\Character\Abilities\CharacterAbilities.cs" />
     <Compile Include="Model\Character\Abilities\AbilityType.cs" />
     <Compile Include="Model\Character\DefaultCharacter.cs" />
     <Compile Include="Model\Character\Size.cs" />

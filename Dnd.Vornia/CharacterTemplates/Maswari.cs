@@ -27,9 +27,9 @@
             }
 
             // ABilities gained from levels
-            Abilities.Increase(AbilityType.Strength, 1);
-            Abilities.Increase(AbilityType.Dexterity, 1);
-            Abilities.Increase(AbilityType.Dexterity, 1);
+            IncreaseAbility(AbilityType.Strength, 1);
+            IncreaseAbility(AbilityType.Dexterity, 1);
+            IncreaseAbility(AbilityType.Dexterity, 1);
         }
     }
 }

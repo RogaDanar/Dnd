@@ -21,13 +21,19 @@
         int Speed { get; set; }
         Hitpoints Hitpoints { get; }
         Experience Experience { get; }
-        AbilityList Abilities { get; }
+        IReadOnlyDictionary<AbilityType, ReadOnlyAbility> AbilityScores { get; }
         ReadOnlyAbility Strength { get; }
         ReadOnlyAbility Dexterity { get; }
         ReadOnlyAbility Constitution { get; }
-        ReadOnlyAbility Intelligence { get; }
         ReadOnlyAbility Wisdom { get; }
+        ReadOnlyAbility Intelligence { get; }
         ReadOnlyAbility Charisma { get; }
+        IReadOnlyDictionary<AbilityType, int> StartAbilities { get; }
+        IReadOnlyDictionary<AbilityType, int> AddedAbilityScores { get; }
+        int UnusedAbilityPoints { get; }
+        void DecreaseAbility(AbilityType type, int points);
+        void IncreaseAbility(AbilityType type, int points);
+        void AddAbilityPoints(int amount);
         SavesList Saves { get; }
         AttackList Attacks { get; }
         FeatureList Features { get; }

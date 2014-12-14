@@ -77,8 +77,8 @@
         }
 
         private static void DisplayAbilities(ICharacter character) {
-            PrintHeader("Abilities", character.Abilities.UnusedPoints);
-            foreach (var ability in character.Abilities) {
+            PrintHeader("Abilities", character.UnusedAbilityPoints);
+            foreach (var ability in character.AbilityScores.Values) {
                 Console.WriteLine("{0} ({1}) {2}", ability.Score, ability.Modifier, ability.Type);
             }
         }

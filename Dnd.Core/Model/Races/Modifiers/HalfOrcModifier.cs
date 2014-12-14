@@ -10,9 +10,9 @@
         public override int Speed { get { return 30; } }
 
         protected override void ClassModifyOnCreation(ICharacter subject) {
-            subject.Abilities.Increase(AbilityType.Strength, 2);
-            subject.Abilities.Decrease(AbilityType.Intelligence, 2);
-            subject.Abilities.Decrease(AbilityType.Charisma, 2);
+            subject.IncreaseAbility(AbilityType.Strength, 2);
+            subject.DecreaseAbility(AbilityType.Intelligence, 2);
+            subject.DecreaseAbility(AbilityType.Charisma, 2);
 
             subject.Features.Add(Feature.DarkVision);
         }

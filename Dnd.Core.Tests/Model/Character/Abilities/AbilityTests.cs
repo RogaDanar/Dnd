@@ -1,6 +1,7 @@
-﻿namespace Dnd.Core.Tests.Model.Abilities
+﻿namespace Dnd.Core.Tests.Model.Character.Abilities
 {
     using Dnd.Core.Model.Character.Abilities;
+    using System;
     using Xunit;
     using Xunit.Extensions;
 
@@ -8,8 +9,11 @@
     {
         [Fact]
         public void ImplicitOperator_AssignToInt_ReturnsScore() {
+            // Assign
+            // Act
             int score = new Ability(AbilityType.Strength, 10);
 
+            // Assert
             Assert.Equal(10, score);
         }
 
@@ -36,15 +40,22 @@
         [InlineData(20, 5)]
         [InlineData(99, 44)]
         public void Modifier_GivenScore_ReturnsCorrectValue(int score, int expectedModifier) {
+            // Assign
+            // Act
             var attr = new Ability(AbilityType.Strength, score);
 
+            // Assert
             Assert.Equal(expectedModifier, attr.Modifier);
         }
 
         [Fact]
         public void Modifier_WithScore0_ThrowsException() {
+            // Assign
             var attr = new Ability(AbilityType.Strength, 0);
-            Assert.Throws<System.ArgumentException>(() => attr.Modifier);
+
+            // Act
+            // Assert
+            Assert.Throws<ArgumentException>(() => attr.Modifier);
         }
 
         [Fact]
@@ -106,20 +117,6 @@
 
             // Assert
             Assert.Equal(8, attr.BaseScore);
-        }
-
-        [Fact]
-        public void Decrease_Above0_ReturnsTrue() {
-            var attr = new Ability(AbilityType.Strength, 10);
-
-            Assert.True(attr.Decrease(2));
-        }
-
-        [Fact]
-        public void Decrease_Below0_ReturnsFalse() {
-            var attr = new Ability(AbilityType.Strength, 10);
-
-            Assert.False(attr.Decrease(12));
         }
     }
 }

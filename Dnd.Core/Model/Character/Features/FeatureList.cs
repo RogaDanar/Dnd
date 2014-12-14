@@ -9,26 +9,17 @@
     {
         public int UnusedFeatures { get; private set; }
 
-        private bool _creating;
-
         private readonly List<Feature> _features = new List<Feature>();
 
         public FeatureList() {
-            _creating = true;
         }
 
         public void Add(Feature feature) {
             if (_features.Contains(feature)) {
                 throw new InvalidOperationException("feature already added");
             }
-            if (_creating || UnusedFeatures > 0) {
+            if (UnusedFeatures > 0) {
                 _features.Add(feature);
-                UsePoint();
-            }
-        }
-
-        private void UsePoint() {
-            if (UnusedFeatures > 0 && !_creating) {
                 UnusedFeatures--;
             }
         }
@@ -39,10 +30,6 @@
 
         public int Count() {
             return _features.Count();
-        }
-
-        public void DoneCreating() {
-            _creating = false;
         }
 
         public IEnumerator<Feature> GetEnumerator() {

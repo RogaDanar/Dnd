@@ -39,7 +39,7 @@
                 }
             }
             foreach (var modValue in Abilities.ModValues) {
-                character.Abilities.Increase(modValue.Key, modValue.Value);
+                character.IncreaseAbility(modValue.Key, modValue.Value);
             }
             //foreach (var feature in Features) {
             //    character.Features.Add((Feature)feature.Feature);

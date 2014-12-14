@@ -11,8 +11,8 @@
         public override int Speed { get { return 30; } }
 
         protected override void ClassModifyOnCreation(ICharacter subject) {
-            subject.Abilities.Increase(AbilityType.Dexterity, 2);
-            subject.Abilities.Decrease(AbilityType.Constitution, 2);
+            subject.IncreaseAbility(AbilityType.Dexterity, 2);
+            subject.DecreaseAbility(AbilityType.Constitution, 2);
 
             subject.Features.Add(Feature.LowLightVision);
 
