@@ -28,8 +28,16 @@ namespace Dnd.Web
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/require").Include(
+                "~/Scripts/require.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/durandal").Include(
+                "~/Scripts/durandal/*.js",
+                "~/Scripts/durandal/plugins/*.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
+                 "~/Content/durandal.css",
                  "~/Content/Site.css"));
         }
     }

@@ -2,6 +2,8 @@
     @Html.Partial("_Home")
 }
 @section Scripts{
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/knockout")
-    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/require.js" data-main="/Scripts/app/main"></script>
 }
