@@ -16,7 +16,7 @@
 
         public static void Display(ICharacter character) {
             DisplayStatus(character);
-            DisplayAttributes(character);
+            DisplayAbilities(character);
             DisplaySaves(character);
             DisplayOneHandedAttacks(character);
             DisplayEquipment(character);
@@ -76,10 +76,10 @@
             Console.WriteLine("Will:      " + character.Saves.Will);
         }
 
-        private static void DisplayAttributes(ICharacter character) {
-            PrintHeader("Attributes", character.Attributes.UnusedPoints);
-            foreach (var attr in character.Attributes) {
-                Console.WriteLine("{0} ({1}) {2}", attr.Score, attr.Modifier, attr.Type);
+        private static void DisplayAbilities(ICharacter character) {
+            PrintHeader("Abilities", character.Abilities.UnusedPoints);
+            foreach (var ability in character.Abilities) {
+                Console.WriteLine("{0} ({1}) {2}", ability.Score, ability.Modifier, ability.Type);
             }
         }
 

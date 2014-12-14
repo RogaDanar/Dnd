@@ -1,146 +1,146 @@
 ﻿namespace Dnd.Core.Model.Character.Skills
 {
-    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Abilities;
 
     public enum SkillType
     {
         [SynergyFrom(Craft)]
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         Appraise,
 
         [SynergyFrom(Tumble)]
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         Balance,
 
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         Bluff,
 
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Strength)]
+        [AbilityModifier(AbilityType.Strength)]
         Climb,
 
-        [AbilityModifier(AttributeType.Constitution)]
+        [AbilityModifier(AbilityType.Constitution)]
         Concentration,
 
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         Craft,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         DecipherScript,
 
         [SynergyFrom(Bluff, Knowledge, SenseMotive)]
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         Diplomacy,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         DisableDevice,
 
         [SynergyFrom(Bluff)]
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         Disguise,
 
         [SynergyFrom(UseRope)]
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         EscapeArtist,
 
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         Forgery,
 
         [SynergyFrom(Knowledge)]
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         GatherInformation,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         HandleAnimal,
 
-        [AbilityModifier(AttributeType.Wisdom)]
+        [AbilityModifier(AbilityType.Wisdom)]
         Heal,
 
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         Hide,
 
         [SynergyFrom(Bluff)]
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         Intimidate,
 
         [SynergyFrom(Tumble)]
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Strength)]
+        [AbilityModifier(AbilityType.Strength)]
         Jump,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         Knowledge,
 
-        [AbilityModifier(AttributeType.Wisdom)]
+        [AbilityModifier(AbilityType.Wisdom)]
         Listen,
 
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         MoveSilently,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         OpenLock,
 
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         Perform,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Wisdom)]
+        [AbilityModifier(AbilityType.Wisdom)]
         Profession,
 
         [SynergyFrom(HandleAnimal)]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         Ride,
 
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         Search,
 
-        [AbilityModifier(AttributeType.Wisdom)]
+        [AbilityModifier(AbilityType.Wisdom)]
         SenseMotive,
 
         [SynergyFrom(Bluff)]
         [TrainedOnly]
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         SleightOfHand,
 
         [TrainedOnly]
         SpeakLanguage,
 
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Intelligence)]
+        [AbilityModifier(AbilityType.Intelligence)]
         Spellcraft,
 
-        [AbilityModifier(AttributeType.Wisdom)]
+        [AbilityModifier(AbilityType.Wisdom)]
         Spot,
 
-        [AbilityModifier(AttributeType.Wisdom)]
+        [AbilityModifier(AbilityType.Wisdom)]
         Survival,
 
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Strength)]
+        [AbilityModifier(AbilityType.Strength)]
         Swim,
 
         [SynergyFrom(Jump)]
         [TrainedOnly]
         [ArmorCheck]
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         Tumble,
 
         [SynergyFrom(DecipherScript)]
         [TrainedOnly]
-        [AbilityModifier(AttributeType.Charisma)]
+        [AbilityModifier(AbilityType.Charisma)]
         UseMagicDevice,
 
-        [AbilityModifier(AttributeType.Dexterity)]
+        [AbilityModifier(AbilityType.Dexterity)]
         UseRope,
     }
 }

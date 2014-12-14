@@ -1,6 +1,6 @@
-﻿namespace Dnd.Core.Model.Character.Attributes
+﻿namespace Dnd.Core.Model.Character.Abilities
 {
-    public enum AttributeType
+    public enum AbilityType
     {
         Strength = 1,
         Dexterity = 2,

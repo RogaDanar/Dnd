@@ -1,7 +1,7 @@
 ﻿namespace Dnd.Core.Model.Character.Skills
 {
     using Dnd.Core.Extensions;
-    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Abilities;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,7 +11,7 @@
 
         public string SubSkill { get; protected set; }
 
-        public AttributeType AbilityModifierType { get; protected set; }
+        public AbilityType AbilityModifierType { get; protected set; }
 
         public IEnumerable<SkillType> SynergyFromSkills { get; protected set; }
 

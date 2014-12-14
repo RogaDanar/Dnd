@@ -11,18 +11,18 @@
 
         private bool _creating;
 
-        private readonly List<Feature> _list = new List<Feature>();
+        private readonly List<Feature> _features = new List<Feature>();
 
         public FeatureList() {
             _creating = true;
         }
 
         public void Add(Feature feature) {
-            if (_list.Contains(feature)) {
+            if (_features.Contains(feature)) {
                 throw new InvalidOperationException("feature already added");
             }
             if (_creating || UnusedFeatures > 0) {
-                _list.Add(feature);
+                _features.Add(feature);
                 UsePoint();
             }
         }
@@ -38,7 +38,7 @@
         }
 
         public int Count() {
-            return _list.Count();
+            return _features.Count();
         }
 
         public void DoneCreating() {
@@ -46,7 +46,7 @@
         }
 
         public IEnumerator<Feature> GetEnumerator() {
-            return _list.GetEnumerator();
+            return _features.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {

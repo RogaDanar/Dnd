@@ -1,35 +1,35 @@
 ﻿namespace Dnd.Vornia.CharacterTemplates
 {
-    using System.Collections.Generic;
     using Dnd.Core.Model.Character;
-    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Abilities;
     using Dnd.Core.Model.Character.Modifiers;
     using Dnd.Core.Model.Classes;
     using Dnd.Core.Model.Races;
+    using System.Collections.Generic;
 
     public class MaswariCommander : DefaultCharacter
     {
-        private static readonly Dictionary<AttributeType, int> abilityScores = new Dictionary<AttributeType, int>() { 
-                {AttributeType.Strength, 17},
-                {AttributeType.Dexterity, 17},
-                {AttributeType.Constitution, 18},
-                {AttributeType.Intelligence, 14},
-                {AttributeType.Wisdom, 12},
-                {AttributeType.Charisma, 15}
+        private static readonly Dictionary<AbilityType, int> abilityScores = new Dictionary<AbilityType, int>() { 
+                {AbilityType.Strength, 17},
+                {AbilityType.Dexterity, 17},
+                {AbilityType.Constitution, 18},
+                {AbilityType.Intelligence, 14},
+                {AbilityType.Wisdom, 12},
+                {AbilityType.Charisma, 15}
             };
 
         public MaswariCommander()
-            : base(ClassType.Fighter, Race.Human, abilityScores, new ModifierProvider()) {
+            : base(Race.Human, ClassType.Fighter, abilityScores, new ModifierProvider()) {
             Experience.AddLevels(16);
 
             while (Experience.CanLevel) {
                 LevelUp(ClassType.Fighter);
             }
             // Attributes gained from levels
-            Attributes.Increase(AttributeType.Strength, 1);
-            Attributes.Increase(AttributeType.Dexterity, 1);
-            Attributes.Increase(AttributeType.Dexterity, 1);
-            Attributes.Increase(AttributeType.Charisma, 1);
+            Abilities.Increase(AbilityType.Strength, 1);
+            Abilities.Increase(AbilityType.Dexterity, 1);
+            Abilities.Increase(AbilityType.Dexterity, 1);
+            Abilities.Increase(AbilityType.Charisma, 1);
             Name = "Marendras";
         }
     }

@@ -14,7 +14,7 @@
             dbCharacter.HitpointsCurrent = character.Hitpoints.Current;
             dbCharacter.HitpointsMax = character.Hitpoints.Max;
 
-            dbCharacter.Attributes = character.Attributes.ToDbAttributes(dbCharacter);
+            dbCharacter.Abilities = character.Abilities.ToDbAbilities(dbCharacter);
 
             dbCharacter.Classes = new Collection<DbCharacterClass>(character.Classes.Values.Select(x => x.ToDbClass(dbCharacter)).ToList());
             dbCharacter.Features = new Collection<DbCharacterFeature>(character.Features.Select(x => x.ToDbFeature(dbCharacter)).ToList());

@@ -120,7 +120,7 @@
     <Compile Include="Model\Races\Modifiers\HalfElfModifier.cs" />
     <Compile Include="Model\Character\Saves\ClassSaves.cs" />
     <Compile Include="Model\Character\Saves\Save.cs" />
-    <Compile Include="Model\Character\Attributes\ReadOnlyAttribute.cs" />
+    <Compile Include="Model\Character\Abilities\ReadOnlyAbility.cs" />
     <Compile Include="Model\Character\Saves\ISaveBonus.cs" />
     <Compile Include="Model\Character\Saves\GoodSaveBonus.cs" />
     <Compile Include="Model\Character\Saves\PoorSaveBonus.cs" />
@@ -134,9 +134,9 @@
     <Compile Include="Model\Races\Modifiers\HumanModifier.cs" />
     <Compile Include="Model\Races\Modifiers\ElfModifier.cs" />
     <Compile Include="Model\Character\Modifiers\IModifier.cs" />
-    <Compile Include="Model\Character\Attributes\Attribute.cs" />
-    <Compile Include="Model\Character\Attributes\AttributeList.cs" />
-    <Compile Include="Model\Character\Attributes\AttributeType.cs" />
+    <Compile Include="Model\Character\Abilities\Ability.cs" />
+    <Compile Include="Model\Character\Abilities\AbilityList.cs" />
+    <Compile Include="Model\Character\Abilities\AbilityType.cs" />
     <Compile Include="Model\Character\DefaultCharacter.cs" />
     <Compile Include="Model\Character\Size.cs" />
     <Compile Include="Model\Character\Saves\SaveType.cs" />

@@ -13,7 +13,7 @@
                 .Property(c => c.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            HasRequired(x => x.Attributes)
+            HasRequired(x => x.Abilities)
                 .WithRequiredPrincipal();
 
             HasMany(x => x.Classes)

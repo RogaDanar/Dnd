@@ -1,46 +1,37 @@
-﻿namespace Dnd.Core.Model.Character.Attributes
+﻿namespace Dnd.Core.Model.Character.Abilities
 {
     using System;
 
     /// <summary>
-    /// A character attribute, can be of type Strength, Dexterity,
+    /// A character ability, can be of type Strength, Dexterity,
     /// Constitution, Wisdom, Intelligence, Charisma
     /// </summary>
-    public class Attribute
+    public class Ability
     {
         /// <summary>
         /// If no score is provided the score will default to 10, whioh
-        /// is the average for an attribute (+0 modifier)
+        /// is the average for an ability (+0 modifier)
         /// </summary>
         private const int _defaultScore = 10;
 
         /// <summary>
-        /// Denotes which attribute this is. This is decided at creation 
+        /// Denotes which ability this is. This is decided at creation 
         /// of this class and can not be changed
         /// </summary>
-        public AttributeType Type { get; protected set; }
+        public AbilityType Type { get; protected set; }
 
         /// <summary>
-        /// The total attribute score. Base score and any bonusses.
+        /// The total ability score. Base score and any bonusses.
         /// </summary>
         public int Score { get { return BaseScore + BonusScore; } }
 
         /// <summary>
-        /// The actual bare attribute score. No bonusses are applies.
+        /// The actual bare ability score. No bonusses are applies.
         /// </summary>
-        private int _baseScore;
-        public int BaseScore {
-            get { return _baseScore; }
-            protected set {
-                if (value <= 0) {
-                    throw new ArgumentException("The Base Score needs to be at least 1.");
-                }
-                _baseScore = value;
-            }
-        }
+        public int BaseScore { get; protected set; }
 
         /// <summary>
-        /// Any bonusses which are added to this attribute.
+        /// Any bonusses which are added to this ability.
         /// </summary>
         public int BonusScore { get; protected set; }
 
@@ -52,12 +43,12 @@
                 if (Score <= 0) {
                     throw new ArgumentException("Score can not be 0, it would mean death", "Score");
                 }
-                return (Score - 10) / 2;
+                return (Score / 2) - 5;
             }
         }
 
-        public Attribute(AttributeType attributeType, int baseScore = _defaultScore, int bonusScore = 0) {
-            Type = attributeType;
+        public Ability(AbilityType abilityType, int baseScore = _defaultScore, int bonusScore = 0) {
+            Type = abilityType;
             BaseScore = baseScore;
             BonusScore = bonusScore;
         }
@@ -96,8 +87,8 @@
             return Score > 0; // a value of 0 or lower should have consequences
         }
 
-        public static implicit operator int(Attribute attr) {
-            return attr.Score;
+        public static implicit operator int(Ability ability) {
+            return ability.Score;
         }
     }
 }

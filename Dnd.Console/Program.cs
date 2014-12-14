@@ -1,7 +1,7 @@
 ﻿namespace Dnd.CharGenerator
 {
     using Dnd.Core.Model.Character;
-    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Abilities;
     using Dnd.Core.Model.Classes;
     using Dnd.Core.Model.Races;
     using System;
@@ -51,7 +51,7 @@
         /// Gets the ability scores from the program argumentlist by index. If the element is missing 
         /// a default value is used
         /// </summary>
-        private static Dictionary<AttributeType, int> GetAbilityScores(IEnumerable<string> abilities) {
+        private static Dictionary<AbilityType, int> GetAbilityScores(IEnumerable<string> abilities) {
             const string defaultScore = "11";
             var str = Int32.Parse(abilities.ElementAtOrDefault(0) ?? defaultScore);
             var dex = Int32.Parse(abilities.ElementAtOrDefault(1) ?? defaultScore);
@@ -60,13 +60,13 @@
             var wis = Int32.Parse(abilities.ElementAtOrDefault(4) ?? defaultScore);
             var cha = Int32.Parse(abilities.ElementAtOrDefault(5) ?? defaultScore);
 
-            var abilityScores = new Dictionary<AttributeType, int>() { 
-                {AttributeType.Strength, str},
-                {AttributeType.Dexterity, dex},
-                {AttributeType.Constitution, con},
-                {AttributeType.Intelligence, intel},
-                {AttributeType.Wisdom, wis},
-                {AttributeType.Charisma, cha}
+            var abilityScores = new Dictionary<AbilityType, int>() { 
+                {AbilityType.Strength, str},
+                {AbilityType.Dexterity, dex},
+                {AbilityType.Constitution, con},
+                {AbilityType.Intelligence, intel},
+                {AbilityType.Wisdom, wis},
+                {AbilityType.Charisma, cha}
             };
             return abilityScores;
         }

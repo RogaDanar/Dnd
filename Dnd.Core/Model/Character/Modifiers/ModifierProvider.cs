@@ -9,7 +9,7 @@
     public class ModifierProvider : IModifierProvider
     {
         /// <summary>
-        /// Returns the base character modifier, which adds the base features and attributepoints for any character
+        /// Returns the base character modifier, which adds the base features and ability points for any character
         /// </summary>
         public ICharacterModifier GetBaseModifier() {
             return new CharacterModifier();

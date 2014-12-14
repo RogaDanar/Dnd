@@ -28,7 +28,7 @@
 
         public ICharacter GetById(int id) {
             return _characters
-                .Include(x => x.Attributes)
+                .Include(x => x.Abilities)
                 .Include(x => x.Classes)
                 .Include(x => x.Features)
                 .Include(x => x.Skills)
@@ -53,14 +53,14 @@
                 .Include(x => x.Classes)
                 .Include(x => x.Features)
                 .Include(x => x.Skills)
-                .Include(x => x.Attributes)
+                .Include(x => x.Abilities)
                 .ToList()
                 .Select(x => x.ToCharacter());
         }
 
         public IEnumerable<ICharacter> FindBy(Expression<Func<ICharacter, bool>> predicate) {
             return _characters
-                .Include(x => x.Attributes)
+                .Include(x => x.Abilities)
                 .Include(x => x.Classes)
                 .Include(x => x.Features)
                 .Include(x => x.Skills)

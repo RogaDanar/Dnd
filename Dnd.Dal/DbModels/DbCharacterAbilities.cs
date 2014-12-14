@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
     using Core.Model;
-    using Core.Model.Character.Attributes;
+    using Core.Model.Character.Abilities;
 
-    public class DbCharacterAttributes : IEntity<int>
+    public class DbCharacterAbilities : IEntity<int>
     {
         public int Id { get; set; }
 
@@ -24,40 +24,40 @@
         public int ModWisdom { get; set; }
         public int ModCharisma { get; set; }
 
-        public Dictionary<AttributeType, int> StartValues {
+        public Dictionary<AbilityType, int> StartValues {
             get {
-                return new Dictionary<AttributeType, int>
+                return new Dictionary<AbilityType, int>
                     {
-                        {AttributeType.Strength, StartStrength},
-                        {AttributeType.Dexterity, StartDexterity},
-                        {AttributeType.Constitution, StartConstitution},
-                        {AttributeType.Intelligence, StartIntelligence},
-                        {AttributeType.Wisdom, StartWisdom},
-                        {AttributeType.Charisma, StartCharisma}
+                        {AbilityType.Strength, StartStrength},
+                        {AbilityType.Dexterity, StartDexterity},
+                        {AbilityType.Constitution, StartConstitution},
+                        {AbilityType.Intelligence, StartIntelligence},
+                        {AbilityType.Wisdom, StartWisdom},
+                        {AbilityType.Charisma, StartCharisma}
                     };
             }
         }
 
-        public Dictionary<AttributeType, int> ModValues {
+        public Dictionary<AbilityType, int> ModValues {
             get {
-                var modValues = new Dictionary<AttributeType, int>();
+                var modValues = new Dictionary<AbilityType, int>();
                 if (ModStrength > 0) {
-                    modValues.Add(AttributeType.Strength, ModStrength);
+                    modValues.Add(AbilityType.Strength, ModStrength);
                 }
                 if (ModDexterity > 0) {
-                    modValues.Add(AttributeType.Dexterity, ModDexterity);
+                    modValues.Add(AbilityType.Dexterity, ModDexterity);
                 }
                 if (ModConstitution > 0) {
-                    modValues.Add(AttributeType.Constitution, ModConstitution);
+                    modValues.Add(AbilityType.Constitution, ModConstitution);
                 }
                 if (ModIntelligence > 0) {
-                    modValues.Add(AttributeType.Intelligence, ModIntelligence);
+                    modValues.Add(AbilityType.Intelligence, ModIntelligence);
                 }
                 if (ModWisdom > 0) {
-                    modValues.Add(AttributeType.Wisdom, ModWisdom);
+                    modValues.Add(AbilityType.Wisdom, ModWisdom);
                 }
                 if (ModCharisma > 0) {
-                    modValues.Add(AttributeType.Charisma, ModCharisma);
+                    modValues.Add(AbilityType.Charisma, ModCharisma);
                 }
                 return modValues;
             }

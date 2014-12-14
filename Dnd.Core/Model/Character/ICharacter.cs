@@ -1,7 +1,7 @@
 ﻿namespace Dnd.Core.Model.Character
 {
+    using Dnd.Core.Model.Character.Abilities;
     using Dnd.Core.Model.Character.Attacks;
-    using Dnd.Core.Model.Character.Attributes;
     using Dnd.Core.Model.Character.Features;
     using Dnd.Core.Model.Character.Modifiers;
     using Dnd.Core.Model.Character.Saves;
@@ -21,13 +21,13 @@
         int Speed { get; set; }
         Hitpoints Hitpoints { get; }
         Experience Experience { get; }
-        AttributeList Attributes { get; }
-        ReadOnlyAttribute Strength { get; }
-        ReadOnlyAttribute Dexterity { get; }
-        ReadOnlyAttribute Constitution { get; }
-        ReadOnlyAttribute Intelligence { get; }
-        ReadOnlyAttribute Wisdom { get; }
-        ReadOnlyAttribute Charisma { get; }
+        AbilityList Abilities { get; }
+        ReadOnlyAbility Strength { get; }
+        ReadOnlyAbility Dexterity { get; }
+        ReadOnlyAbility Constitution { get; }
+        ReadOnlyAbility Intelligence { get; }
+        ReadOnlyAbility Wisdom { get; }
+        ReadOnlyAbility Charisma { get; }
         SavesList Saves { get; }
         AttackList Attacks { get; }
         FeatureList Features { get; }

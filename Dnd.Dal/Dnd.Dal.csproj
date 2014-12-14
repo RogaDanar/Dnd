@@ -55,17 +55,17 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="DbModels\DbCharacter.cs" />
-    <Compile Include="DbModels\DbCharacterAttributes.cs" />
+    <Compile Include="DbModels\DbCharacterAbilities.cs" />
     <Compile Include="DbModels\DbCharacterClass.cs" />
     <Compile Include="DbModels\DbCharacterSkill.cs" />
     <Compile Include="DbModels\DbCharacterFeature.cs" />
-    <Compile Include="Extensions\AttributeListExtensions.cs" />
+    <Compile Include="Extensions\AbilityListExtensions.cs" />
     <Compile Include="Extensions\SkillExtensions.cs" />
     <Compile Include="Extensions\IFeatureExtensions.cs" />
     <Compile Include="Extensions\ICharacterExtentions.cs" />
     <Compile Include="Extensions\IClassExtensions.cs" />
     <Compile Include="IDbContext.cs" />
-    <Compile Include="Mapping\AttributesMap.cs" />
+    <Compile Include="Mapping\AbilitiesMap.cs" />
     <Compile Include="Mapping\CharacterMap.cs" />
     <Compile Include="Mapping\ClassesMap.cs" />
     <Compile Include="Mapping\FeaturesMap.cs" />

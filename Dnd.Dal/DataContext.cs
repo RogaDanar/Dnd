@@ -12,7 +12,7 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             modelBuilder.Configurations.Add(new CharacterMap());
-            modelBuilder.Configurations.Add(new AttributesMap());
+            modelBuilder.Configurations.Add(new AbilitiesMap());
             modelBuilder.Configurations.Add(new FeaturesMap());
             modelBuilder.Configurations.Add(new SkillsMap());
             modelBuilder.Configurations.Add(new ClassesMap());

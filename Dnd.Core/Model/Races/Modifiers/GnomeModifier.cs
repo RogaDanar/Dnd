@@ -1,7 +1,7 @@
 ﻿namespace Dnd.Core.Model.Races.Modifiers
 {
     using Dnd.Core.Model.Character;
-    using Dnd.Core.Model.Character.Attributes;
+    using Dnd.Core.Model.Character.Abilities;
     using Dnd.Core.Model.Character.Features;
     using Dnd.Core.Model.Character.Skills;
 
@@ -11,8 +11,8 @@
         public override int Speed { get { return 20; } }
 
         protected override void ClassModifyOnCreation(ICharacter subject) {
-            subject.Attributes.Increase(AttributeType.Constitution, 2);
-            subject.Attributes.Decrease(AttributeType.Strength, 2);
+            subject.Abilities.Increase(AbilityType.Constitution, 2);
+            subject.Abilities.Decrease(AbilityType.Strength, 2);
 
             subject.Features.Add(Feature.LowLightVision);
 

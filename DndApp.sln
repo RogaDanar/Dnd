@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core", "Dnd.Core\Dnd.Core.csproj", "{ADB679A0-4036-4B81-957B-D3D9E6BC8766}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Tests", "Dnd.Tests\Dnd.Tests.csproj", "{F065AA59-9F18-4C8A-83AF-803A9E326C47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.CharGenerator", "Dnd.Console\Dnd.CharGenerator.csproj", "{42DE2D1C-0798-40B0-AD40-966E0C433FBC}"
 EndProject
@@ -16,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Web", "Dnd.Web\Dnd.Web.csproj", "{01A3A365-3125-49D9-91D5-C57E2688859F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Dal", "Dnd.Dal\Dnd.Dal.csproj", "{FAB9CD9C-B074-4645-A149-0971B0C1658E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core.Tests", "Dnd.Core.Tests\Dnd.Core.Tests.csproj", "{F065AA59-9F18-4C8A-83AF-803A9E326C47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,16 +37,6 @@ Global
 		{ADB679A0-4036-4B81-957B-D3D9E6BC8766}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{ADB679A0-4036-4B81-957B-D3D9E6BC8766}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{ADB679A0-4036-4B81-957B-D3D9E6BC8766}.Release|x86.ActiveCfg = Release|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|x86.ActiveCfg = Release|Any CPU
 		{42DE2D1C-0798-40B0-AD40-966E0C433FBC}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{42DE2D1C-0798-40B0-AD40-966E0C433FBC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{42DE2D1C-0798-40B0-AD40-966E0C433FBC}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -97,6 +87,16 @@ Global
 		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FAB9CD9C-B074-4645-A149-0971B0C1658E}.Release|x86.ActiveCfg = Release|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F065AA59-9F18-4C8A-83AF-803A9E326C47}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

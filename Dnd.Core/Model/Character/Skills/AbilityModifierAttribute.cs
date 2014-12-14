@@ -1,13 +1,13 @@
 ﻿namespace Dnd.Core.Model.Character.Skills
 {
-    using Dnd.Core.Model.Character.Attributes;
-    using Attribute = System.Attribute;
+    using Dnd.Core.Model.Character.Abilities;
+    using System;
 
     public class AbilityModifierAttribute : Attribute
     {
-        public AttributeType Type;
+        public AbilityType Type;
 
-        public AbilityModifierAttribute(AttributeType type) {
+        public AbilityModifierAttribute(AbilityType type) {
             Type = type;
         }
     }

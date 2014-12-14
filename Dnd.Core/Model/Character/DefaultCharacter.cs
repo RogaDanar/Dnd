@@ -1,7 +1,7 @@
 ﻿namespace Dnd.Core.Model.Character
 {
+    using Dnd.Core.Model.Character.Abilities;
     using Dnd.Core.Model.Character.Attacks;
-    using Dnd.Core.Model.Character.Attributes;
     using Dnd.Core.Model.Character.Features;
     using Dnd.Core.Model.Character.Modifiers;
     using Dnd.Core.Model.Character.Saves;
@@ -28,13 +28,13 @@
         public Hitpoints Hitpoints { get; private set; }
         public Experience Experience { get; private set; }
 
-        public AttributeList Attributes { get; private set; }
-        public ReadOnlyAttribute Strength { get { return Attributes.Strength; } }
-        public ReadOnlyAttribute Dexterity { get { return Attributes.Dexterity; } }
-        public ReadOnlyAttribute Constitution { get { return Attributes.Constitution; } }
-        public ReadOnlyAttribute Intelligence { get { return Attributes.Intelligence; } }
-        public ReadOnlyAttribute Wisdom { get { return Attributes.Wisdom; } }
-        public ReadOnlyAttribute Charisma { get { return Attributes.Charisma; } }
+        public AbilityList Abilities { get; private set; }
+        public ReadOnlyAbility Strength { get { return Abilities.Strength; } }
+        public ReadOnlyAbility Dexterity { get { return Abilities.Dexterity; } }
+        public ReadOnlyAbility Constitution { get { return Abilities.Constitution; } }
+        public ReadOnlyAbility Intelligence { get { return Abilities.Intelligence; } }
+        public ReadOnlyAbility Wisdom { get { return Abilities.Wisdom; } }
+        public ReadOnlyAbility Charisma { get { return Abilities.Charisma; } }
 
         public SavesList Saves { get; private set; }
         public AttackList Attacks { get; private set; }
@@ -59,11 +59,11 @@
             _modifierProvider = modifierProvider;
         }
 
-        public DefaultCharacter(ClassType classType, Race race, Dictionary<AttributeType, int> abilityScores, IModifierProvider modifierProvider)
+        public DefaultCharacter(Race race, ClassType classType, Dictionary<AbilityType, int> abilityScores, IModifierProvider modifierProvider)
             : this(modifierProvider) {
             Race = race;
             InitializeProperties();
-            Attributes = new AttributeList(abilityScores);
+            Abilities = new AbilityList(abilityScores);
             var characterClass = ClassProvider.GetNewClass(classType, _modifierProvider);
             Classes.Add(classType, characterClass);
             // Once all the properties are set, OnCreation can be called, which will process all modifiers for this character/class/race
@@ -115,8 +115,8 @@
             AcceptOnCreation(_modifierProvider.GetBaseModifier());
             AcceptOnCreation(_modifierProvider.GetRaceModifier(Race));
             AcceptOnCreation(Classes[charClass].Modifier);
-            // Prevent further editing to the Attributes and Features outside of levelling
-            Attributes.DoneCreating();
+            // Prevent further editing to the Abilities and Features outside of levelling
+            Abilities.DoneCreating();
             Features.DoneCreating();
         }
 
