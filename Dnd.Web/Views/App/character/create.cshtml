@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+<section>
+    <h2>Dungeons and Dragons Character Creator</h2>
+    <div>
+        <form data-bind="submit:create">
+            <fieldset>
+                <legend>Character</legend>
+                <div>
+                    <label>
+                        Name:
+                        <input data-bind="value:newCharacter.Name" required />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Race:
+                        <input data-bind="value:newCharacter.Race" required />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Class:
+                        <input data-bind="value:newCharacter.Class" required />
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="Create" />
+                    <a href="#/character/show">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>
