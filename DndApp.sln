@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core", "Dnd.Core\Dnd.Core.csproj", "{ADB679A0-4036-4B81-957B-D3D9E6BC8766}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core", "src\Dnd.Core\Dnd.Core.csproj", "{ADB679A0-4036-4B81-957B-D3D9E6BC8766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.CharGenerator", "Dnd.Console\Dnd.CharGenerator.csproj", "{42DE2D1C-0798-40B0-AD40-966E0C433FBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.CharGenerator", "src\Dnd.Console\Dnd.CharGenerator.csproj", "{42DE2D1C-0798-40B0-AD40-966E0C433FBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Arena", "DnD.Arena\Dnd.Arena.csproj", "{8618895F-0E6F-4E12-A791-F336D4151530}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Arena", "src\DnD.Arena\Dnd.Arena.csproj", "{8618895F-0E6F-4E12-A791-F336D4151530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Vornia", "Dnd.Vornia\Dnd.Vornia.csproj", "{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Vornia", "src\Dnd.Vornia\Dnd.Vornia.csproj", "{5BFBE20C-EB1D-4C9C-90F6-C13D182FD7A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Dal", "Dnd.Dal\Dnd.Dal.csproj", "{FAB9CD9C-B074-4645-A149-0971B0C1658E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Dal", "src\Dnd.Dal\Dnd.Dal.csproj", "{FAB9CD9C-B074-4645-A149-0971B0C1658E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core.Tests", "Dnd.Core.Tests\Dnd.Core.Tests.csproj", "{F065AA59-9F18-4C8A-83AF-803A9E326C47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Core.Tests", "src\Dnd.Core.Tests\Dnd.Core.Tests.csproj", "{F065AA59-9F18-4C8A-83AF-803A9E326C47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Web", "Dnd.Web\Dnd.Web.csproj", "{9B26FBAA-E4C9-45EC-BBEE-D05B8CC13E02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dnd.Web", "src\Dnd.Web\Dnd.Web.csproj", "{9B26FBAA-E4C9-45EC-BBEE-D05B8CC13E02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
